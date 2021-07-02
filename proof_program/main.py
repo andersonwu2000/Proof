@@ -9,3 +9,4 @@ proof2 = r'''
     then | 2 * x - 6 | < \varepsilon
     then 2 * x \rightarrow 6 as x \rightarrow 3
     '''
+
