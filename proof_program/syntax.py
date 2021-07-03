@@ -27,11 +27,12 @@ class alpha(syntax):
     EBNF 文法 (依優先級)
     narrative    = ("let" | "if")? proposition ("then" proposition)*
     proposition  = quantifier "\n"?
-    quantifier   = ("∀" object "∈" object ":" | "∃" object "∈" object ":" )? operation_2
+    quantifier   = ("∀" obj "∈" obj ":" | "∃" obj "∈" obj ":" )? operation_2
     operation_2  = operation_l (bin_operator operation_l)*
     operation_l  = operator_l* operation_r
     operation_r  = primary operator_r*
-    primary      = object | "(" quantifier ")"
+    primary      = obj | "(" quantifier ")"
+
     bin_operator = "∧" | "V" | "⇒" | "⇔" | "∈" | "="
     operator_l   = "¬"
     operator_r   = ε
@@ -52,7 +53,7 @@ class alpha(syntax):
     def tokennize(self, content:str) -> list:
         """ 標記化 """
         content = content.replace("\n", " \n ").split(" ")
-        content = [i for i in content if not i==""] + ["EOF"]
+        content = [i for i in content if not i==""] + [None]
         if content[0] == "\n":
             content.pop(0)
         return content
@@ -62,7 +63,7 @@ class alpha(syntax):
         """ 生成抽象語法樹 """
         self.idx = 0
         structure = []
-        while self.content[self.idx] not in {"EOF"}:
+        while self.content[self.idx] not in {None}:
             structure += [self.narrative()]
         return structure
 
@@ -84,21 +85,17 @@ class alpha(syntax):
         return node
     
     def quantifier(self) -> Node:
-        if self.content[self.idx] in {"∀", "∃"}:
-            form = [["∀", "∈", ":"], ["∃", "∈", ":"]] 
-            if self.content[self.idx:self.idx+5:2] not in form:
-                raise SyntaxError("not '∈' or ':'")
-
-            self.idx += 5
-            object_1 = Node(self.content[self.idx-4])
-            object_2 = Node(self.content[self.idx-2])
-            node = Node(self.content[self.idx-3], object_1, object_2)
-            node = Node(self.content[self.idx-5], node, self.operation_2nd())
+        form = [["∀", "∈", ":"], ["∃", "∈", ":"]] 
+        if self.content[self.idx:self.idx+5:2] in form:
+            self.idx += 1
+            node = self.operation_2()
+            self.idx += 1
+            node = Node(self.content[self.idx-5], node, self.operation_2())
         else:
-            node = self.operation_2nd()
+            node = self.operation_2()
         return node
     
-    def operation_2nd(self) -> Node:
+    def operation_2(self) -> Node:
         node = self.operation_l()
         while self.content[self.idx] in self.bin_operator:
             self.idx += 1
@@ -123,14 +120,20 @@ class alpha(syntax):
     def primary(self) -> Node:
         if self.content[self.idx] in {"("}:
             self.idx += 1
-            node = Node(self.content[self.idx-1], self.quantifier())
+            node = self.quantifier()
             if self.content[self.idx] not in {")"}:
                 raise SyntaxError("not ')'")
             self.idx += 1
         else:
-            self.idx += 1
-            node = Node(self.content[self.idx-1])
+            node = self.obj()
         return node
+    
+    def obj(self) -> Node:
+        if self.content[self.idx] not in self.alphabet:
+            self.idx += 1
+            return Node(self.content[self.idx-1])
+        else:
+            raise SyntaxError("Object names are named as keywords")
 
     # Logic check
     def logical(self, area) -> bool:
@@ -138,7 +141,10 @@ class alpha(syntax):
         pass
         return True
 
-proof = '∀ a ∈ A : a = b'
+proof = '∀ a ∈ Df : ( ∀ ε ∈ R+ : ( ∃ δ ∈ R+ : ( x ∈ B_ε(a) ) ⇒ ( f(x) ∈ B_δ(f(a)) ) ) )'
 c = alpha(proof)
-print(c.structure[0].kind)
-print(c.structure[0].args)
+def show(l):
+    for i in l:
+        print(i.kind)
+        show(i.args)
+show(c.structure)
