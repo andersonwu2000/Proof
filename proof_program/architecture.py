@@ -8,9 +8,9 @@ class area:
             assumptions (set of str): 該環境的假設
             grammar  (syntax.syntax): 該環境的語法
         Variables
-            self.theorems  (set of AST): 該環境的所有定理
-            self.bases    (set of area): 該環境的基礎環境
-            self.related (list of area): 該環境的相關定理
+            self.theorems (set of syntax): 該環境的所有定理
+            self.bases      (set of area): 該環境的基礎環境
+            self.related   (list of area): 該環境的相關定理
         """
         self.grammar = grammar
         self.theorems = set()
@@ -24,7 +24,8 @@ class area:
             raise TypeError
 
         self.related = {thm for base in self.bases for thm in base.related}
-        self.related = list(self.theorems) + list(self.related)
+        self.related.update(self.theorems)
+        self.related = list(self.related)
 
     def __call__(self, proof) -> bool:
         """ 
@@ -32,13 +33,6 @@ class area:
         """
         proof = self.grammar(proof)
         return proof.logical(self)
-        # for narrative in proof:
-        #     for thm in self.related:
-        #         if proof.logical(self):
-        #             break
-        #     else:
-        #         return False
-        # return True
 
     def add(self, theorems) -> None:
         """ 對該環境添加新的定理 """
@@ -51,11 +45,3 @@ class area:
         self.theorems = self.theorems.union(tmp)
 
 the_basic = area()
-
-# class area:
-#     def __init__(self, bases=set()) -> None:
-#         if type(bases) is area:
-#             self.bases = {bases}
-#         elif type(bases) in {list, tuple, set}:
-#             self.bases = set(bases)
-#         self.l = [self] + list(self.bases)
