@@ -10,22 +10,18 @@ class area:
         Variables
             self.theorems (set of syntax): 該環境的所有定理
             self.bases      (set of area): 該環境的基礎環境
-            self.related   (list of area): 該環境的相關定理
+            self.related    (set of area): 該環境的相關定理
         """
-        self.grammar = grammar
+        self.grammar  = grammar
         self.theorems = set()
-        self.add(assumptions)
+        self.bases    = set()
+        self.related  = set()
 
-        if type(bases) is area:
-            self.bases = {bases}
-        elif type(bases) in {list, tuple, set}:
-            self.bases = set(bases)
-        else:
-            raise TypeError
-
-        self.related = {thm for base in self.bases for thm in base.related}
-        self.related.update(self.theorems)
-        self.related = list(self.related)
+        self.add_thm(self.theorems, assumptions)
+        self.add_thm(self.related, assumptions)
+        self.add_base(bases)
+        for base in self.bases:
+            self.add_thm(self.related, base.related)
 
     def __call__(self, proof) -> bool:
         """ 
@@ -34,14 +30,26 @@ class area:
         proof = self.grammar(proof)
         return proof.logical(self)
 
-    def add(self, theorems) -> None:
-        """ 對該環境添加新的定理 """
-        if type(theorems) is str:
-            tmp = {self.grammar(theorems)}
-        elif type(theorems) in {list, tuple, set}:
-            tmp = {self.grammar(thm) for thm in theorems}
+    def add_base(self, bases) -> None:
+        """ 對該環境添加新的基礎 """
+        if type(bases) is area:
+            self.bases.add(bases)
+        elif type(bases) in {list, tuple, set}:
+            for base in bases:
+                self.add_base(base)
         else:
             raise TypeError
-        self.theorems = self.theorems.union(tmp)
+
+    def add_thm(self, obj, theorems) -> None:
+        """ 對該環境添加新的定理 """
+        if type(theorems) in {str, syntax.Node}:
+            obj.add(self.grammar(theorems))
+        elif type(theorems) is self.grammar:
+            obj.add(theorems)
+        elif type(theorems) in {list, tuple, set}:
+            for thm in theorems:
+                self.add_thm(obj, thm)
+        else:
+            raise TypeError
 
 the_basic = area()

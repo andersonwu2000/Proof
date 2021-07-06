@@ -16,11 +16,15 @@ assumptions = "a = b"
 grammar = syntax_alpha.alpha
 new_area = architecture.area(bases, assumptions, grammar)
 new_area = architecture.area(new_area, set(), grammar)
+assumptions = {
+    "¬ True ∧ ¬ ¬ ¬ True ∧ True",
+    "∀ a ∈ A : ( ∃ b : ( ( b ∈ A ) ⇒ ( a = b ) ) )" }
+new_area = architecture.area(new_area, assumptions, grammar)
 
 # thms = new_area.theorems
 # for thm in thms:
 #     thm.representation_structure()
 
-thms = new_area.related
+thms = new_area.theorems
 for thm in thms:
     thm.representation_structure()

@@ -1,8 +1,13 @@
 
 class Node:
     def __init__(self, kind="", *args) -> None:
+        """
+        抽象語法樹的節點
+        Variables
+            self.args (list of Node): 節點下派生的節點
+        """
         self.kind = kind
-        self.args = args
+        self.args = list(args)
 
 class syntax:
     def __init__(self, content:str) -> None:
