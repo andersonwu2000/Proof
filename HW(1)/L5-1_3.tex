@@ -1,0 +1,535 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\setlength{\parindent}{0em}
+\linespread{1.3}
+\author{andersonwu2000}
+\usepackage[margin=1cm]{geometry}
+\pagestyle{empty}
+\thispagestyle{empty} 
+
+\newcounter{sect}
+
+\newcounter{block}[sect]
+\newenvironment{tblock}[1]
+{\refstepcounter{block}\theblock.~\begin{minipage}[t]{\dimexpr\linewidth}#1\\}
+{\end{minipage}\\}
+
+\newenvironment{comm}
+{\makebox[12pt][l]{$\bullet$}\begin{minipage}[t]{\dimexpr\linewidth}}
+{\end{minipage}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
+
+\hfill 章節 5-1 吳至堯 U10811023
+
+3.d. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find the characteristic equations of the following matrix. \\
+$A=\begin{bmatrix} -2 & -7 \\ 1 & 2 \end{bmatrix},\quad \det(\lambda I-A)=\det(\begin{bmatrix} \lambda & 0 \\ 0  & \lambda \end{bmatrix} - \begin{bmatrix} -2 & -7 \\ 1 & 2 \end{bmatrix}) = \det(\begin{bmatrix} \lambda +2 & 7 \\ -1  & \lambda-2 \end{bmatrix}) = 0$
+\[
+\Rightarrow(\lambda+2)(\lambda-2)-7(-1)=\lambda^2+3=0
+\]
+\end{minipage}\\
+
+4. \begin{minipage}[t]{\dimexpr\linewidth}
+Find the eigenvalues of the matrices in Exercise 3. \\
+d.$\quad (\lambda+2)(\lambda-2)+7=0\quad\Rightarrow\quad\lambda^2 +3=0 \quad \Rightarrow \quad \lambda=\pm \sqrt{3}i$\\
+\end{minipage}\\
+
+5. \begin{minipage}[t]{\dimexpr\linewidth}
+Find bases for the eigenspaces of the matrices in Exercise 3. \\
+Let $\mathbf{v}=\begin{bmatrix} x \\ y \end{bmatrix}$ is an eigenvator of A corresponding to an eigenvalue $\lambda \Leftrightarrow (\lambda I-A)\mathbf{v}=0$ \\
+d. \begin{minipage}[t]{\dimexpr\linewidth}
+\begin{tabular}[t]{llll}
+If $\lambda=\sqrt{3}i$,&$(2\sqrt{3}I-A)\mathbf{v}=\begin{bmatrix} \sqrt{3}i+2 & 7 \\ -1 & \sqrt{3}i-2 \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix}=\begin{bmatrix} 0 \\ 0 \end{bmatrix}$&$\Rightarrow$&$\begin{bmatrix} x \\ y \end{bmatrix}=t\begin{bmatrix} -7 \\ 2+\sqrt{3}i \end{bmatrix}$,\quad$t\in\mathbb{R}$ \\
+If $\lambda=-\sqrt{3}i$,&$(2\sqrt{3}I-A)\mathbf{v}=\begin{bmatrix} 2-\sqrt{3}i & 7 \\ -1 & -2-\sqrt{3}i \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix}=\begin{bmatrix} 0 \\ 0 \end{bmatrix}$&$\Rightarrow$&$\begin{bmatrix} x \\ y \end{bmatrix}=t\begin{bmatrix} -7 \\ 2-\sqrt{3}i \end{bmatrix}$,\quad$t\in\mathbb{R}$ \\
+\end{tabular} \\
+$\Rightarrow \begin{bmatrix}-7 & 2+\sqrt{3}i\end{bmatrix}^T$ for $\lambda=\sqrt{3}i$,\quad$\begin{bmatrix}-7 & 2-\sqrt{3}i\end{bmatrix}^T$ for $\lambda=-\sqrt{3}i$
+\end{minipage}
+\end{minipage}\\
+
+6. \begin{minipage}[t]{\dimexpr\linewidth}
+Find the characteristic equations of the following matrix. \\
+$A=\begin{bmatrix}
+-2 & 0 & 1 \\
+-6 & -2 & 0 \\
+19 & 5 & -4 
+\end{bmatrix}
+,\quad \det(\lambda I-A) = \det(\begin{bmatrix}
+\lambda+2 & 0 & -1 \\
+6 & \lambda+2 & 0 \\
+-19 & -5 & \lambda+4 
+\end{bmatrix}) = 0$
+\[
+\Rightarrow (\lambda+2)((\lambda+2)(\lambda+4))-(-30-(-19)(\lambda+2))=\lambda^3+8\lambda^2+\lambda+8=0
+\]
+\end{minipage}\\
+
+7. \begin{minipage}[t]{\dimexpr\linewidth}
+Find the eigenvalues of the matrix in Exercise 6. \\
+c.$\quad\lambda^3+8\lambda^2+\lambda+8=(\lambda+8)(\lambda^2+1)=0\quad\Rightarrow\quad\lambda=-8,\pm i$
+\end{minipage}\\
+
+8. \begin{minipage}[t]{\dimexpr\linewidth}
+Find bases for the eigenspaces of the matrix in Exercise 6. \\
+Let $\mathbf{v}=\begin{bmatrix} x & y & z \end{bmatrix}^T$ is an eigenvator of A corresponding to an eigenvalue $\lambda \Leftrightarrow (\lambda I-A)\mathbf{v}=0$ \\
+c. \begin{minipage}[t]{\dimexpr\linewidth}
+\begin{tabular}[t]{llll}
+If $\lambda=-8$,&$(-8I-A)\mathbf{v}=\begin{bmatrix} -6 & 0 & -1 \\ 6 & -6 & 0 \\ -19 & -5 & -4  \end{bmatrix}\begin{bmatrix} x \\ y \\ z \end{bmatrix}=\begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}$&$\Rightarrow$&$\begin{bmatrix} x \\ y \\ z \end{bmatrix}=t\begin{bmatrix} -\frac{1}{6} \\ -\frac{1}{6} \\ 1 \end{bmatrix}$,\quad$t\in\mathbb{R}$ \\
+If $\lambda=i$,&$(iI-A)\mathbf{v}=\begin{bmatrix} i+2 & 0 & -1 \\ 6 & i+2 & 0 \\ -19 & -5 & i+4 \end{bmatrix}\begin{bmatrix} x \\ y \\ z \end{bmatrix}=\begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}$&$\Rightarrow$&$\begin{bmatrix} x \\ y \\ z \end{bmatrix}=
+t\begin{bmatrix} 5i-10 \\ 24i-18 \\ 25 \end{bmatrix}$,\quad$t\in\mathbb{R}$ \\
+If $\lambda=-i$,&$(-iI-A)\mathbf{v}=\begin{bmatrix} 2-i & 0 & -1 \\ 6 & 2-i & 0 \\ -19 & -5 & 4-i \end{bmatrix}\begin{bmatrix} x \\ y \\ z \end{bmatrix}=\begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}$&$\Rightarrow$&$\begin{bmatrix} x \\ y \\ z \end{bmatrix}=
+t\begin{bmatrix} 5i+10 \\ -24i-18 \\ 25 \end{bmatrix}$,\quad$t\in\mathbb{R}$ \\
+\end{tabular} \\
+$\Rightarrow \begin{bmatrix}-\frac{1}{6} & -\frac{1}{6} &  1\end{bmatrix}^T$ for $\lambda=-8$,$\begin{bmatrix}5i-10 & 24i-18 & 25\end{bmatrix}^T$ for $\lambda=i$,$\begin{bmatrix}5i+10 & -24i-18 & 25\end{bmatrix}^T$ for $\lambda=-i$
+\end{minipage}
+\end{minipage}\\
+
+9. \begin{minipage}[t]{\dimexpr\linewidth}
+Find the characteristic equations of the following matrix. \\
+$A=\begin{bmatrix}
+10 & -9 &  0 &  0 \\
+4  & -2 &  0 &  0 \\
+0  &  0 & -2 & -7 \\ 
+0  &  0 &  1 &  2
+\end{bmatrix}
+,\quad \det(\lambda I-A) = \det(\begin{bmatrix}
+\lambda-10 &         9 &         0 &         0 \\
+        -4 & \lambda+2 &         0 &         0 \\
+         0 &         0 & \lambda+2 &         7 \\
+         0 &         0 &         -1 & \lambda-2 \\
+\end{bmatrix}) = 0$
+\[
+\Rightarrow \lambda^4-8\lambda^3+19\lambda^2-24\lambda+48=0
+\]
+\end{minipage}\\
+
+10. \begin{minipage}[t]{\dimexpr\linewidth}
+Find the eigenvalues of the matrix in Exercise 6. \\
+c.$\Rightarrow \lambda^4-8\lambda^3+19\lambda^2-24\lambda+48=(\lambda-4)^2(x^2+3)=0\quad\Rightarrow\quad\lambda=4,\pm \sqrt{3}i$
+\end{minipage}\\
+
+11. \begin{minipage}[t]{\dimexpr\linewidth}
+Find bases for the eigenspaces of the matrix in Exercise 6. \\
+Let $\mathbf{v}= \begin{bmatrix}x & y & z & w\end{bmatrix}^T$ is an eigenvator of A corresponding to an eigenvalue $\lambda \Leftrightarrow (\lambda I-A)\mathbf{v}=0$ \\
+c. \begin{minipage}[t]{\dimexpr\linewidth}
+Let $t\in\mathbb{R}$\\
+\begin{tabular}[t]{llll}
+\begin{minipage}[b]{7em}
+If $\lambda=4$, \\
+$(4I-A)\mathbf{v}=$
+\end{minipage}
+&$\begin{bmatrix} 
+-6 & 9 & 0 & 0 \\
+-4 & 6 & 0 & 0 \\
+ 0 & 0 & 6 & 7 \\
+ 0 & 0 &-1 & 2 \\
+\end{bmatrix}
+\begin{bmatrix} x \\ y \\ z \\ w \end{bmatrix}=
+\begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}$
+&$\Rightarrow$&$
+\begin{bmatrix} x \\ y \\ z \\ w \end{bmatrix}=
+t\begin{bmatrix} 2 \\ 3 \\ 0 \\ 0 \end{bmatrix}$ \\
+\begin{minipage}[b]{7em}
+If $\lambda=\sqrt{3}i$, \\
+$(\sqrt{3}iI-A)\mathbf{v}=$
+\end{minipage}
+&$\begin{bmatrix} 
+\sqrt{3}i-10\hspace*{-10pt} & 9    & 0    & 0    \\
+-4    & \hspace*{-10pt}\sqrt{3}i+2 & 0    & 0    \\
+ 0    & 0    & \hspace*{-10pt}\sqrt{3}i+2 & 7    \\
+ 0    & 0    &-1    & \hspace*{-10pt}\sqrt{3}i-2 \\
+\end{bmatrix}
+\begin{bmatrix} x \\ y \\ z \\ w \end{bmatrix}=
+\begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}$
+&$\Rightarrow$&$
+\begin{bmatrix} x \\ y \\ z \\ w \end{bmatrix}=
+t\begin{bmatrix} 0 \\ 0 \\ -2+\sqrt{3}i \\ 1 \end{bmatrix}$\\
+\begin{minipage}[b]{8em}
+If $\lambda=-\sqrt{3}i$, \\
+$(-\sqrt{3}iI-A)\mathbf{v}=$
+\end{minipage}
+&$\begin{bmatrix} 
+-10-\sqrt{3}i\hspace*{-10pt} & 9    & 0    & 0    \\
+-4    & \hspace*{-10pt}2-\sqrt{3}i & 0    & 0    \\
+ 0    & 0    & \hspace*{-10pt}2-\sqrt{3}i & 7    \\
+ 0    & 0    &-1    & \hspace*{-10pt}-2-\sqrt{3}i \\
+\end{bmatrix}
+\begin{bmatrix} x \\ y \\ z \\ w \end{bmatrix}=
+\begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}$
+&$\Rightarrow$&$
+\begin{bmatrix} x \\ y \\ z \\ w \end{bmatrix}=
+t\begin{bmatrix} 0 \\ 0 \\ -2-\sqrt{3}i \\ 1 \end{bmatrix}$\\
+\end{tabular} \\
+$\Rightarrow$\begin{minipage}{\dimexpr\linewidth}
+$ \begin{bmatrix}2 & 3 & 0 & 0\end{bmatrix}^T$ for $\lambda=4$,\\
+$\begin{bmatrix}0 & 0 & -2+\sqrt{3}i & 1\end{bmatrix}^T$ for $\lambda=\sqrt{3}i$,\quad
+$\begin{bmatrix}0 & 0 & -2-\sqrt{3}i & 1\end{bmatrix}^T$ for $\lambda=-\sqrt{3}i$ for $\lambda=-i$
+\end{minipage}
+\end{minipage}
+\end{minipage}\\
+
+In Exercises 36, 39, use the method of Exercise 35 to determine whether the matrix is diagonaizable. 
+
+36. \begin{minipage}[t]{\dimexpr\linewidth}
+\[ A=
+\begin{bmatrix}
+4  & 0 \\
+-2 & 4 
+\end{bmatrix}
+\]\\[-25pt]
+a. \begin{minipage}[t]{\dimexpr\linewidth}
+Find the eigenvalues of $A$. \\
+$\det(\lambda I-A)=\begin{bmatrix}
+\lambda-4  & 0 \\
+2 & \lambda-4 
+\end{bmatrix}=0\quad\Rightarrow\quad(\lambda-4)^2=0\quad\Rightarrow\quad\lambda=4$,\quad algebraic multiplicity $=2$ \\
+\end{minipage}
+b. \begin{minipage}[t]{\dimexpr\linewidth}
+For each eigenvalue $\lambda$, find the rank of the matrix $\lambda I-A$\\
+$(\lambda I-A)\textbf{x}=(4I-A)\textbf{x}=\begin{bmatrix}
+0 & 0 \\
+2 & 0
+\end{bmatrix}\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}=\begin{bmatrix}
+0 \\ 0
+\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}=t\begin{bmatrix}
+1 \\ 0
+\end{bmatrix},\quad t\in\mathbb{R}\quad\Rightarrow\quad$
+rank = 1 \\
+\end{minipage}
+c. \begin{minipage}[t]{\dimexpr\linewidth}
+algebraic multiplicity $\ne$ geometric multiplicity = rank of the eigenspace,\quad $A$ is not diagonalizable.
+\end{minipage}
+\end{minipage} \\
+
+39. \begin{minipage}[t]{\dimexpr\linewidth}
+\[ A=
+\begin{bmatrix}
+-1 &  0 &  1 \\
+-1 &  3 &  0 \\
+-4 & 13 & -1 \\
+\end{bmatrix}
+\]\\[-25pt]
+a. \begin{minipage}[t]{\dimexpr\linewidth}
+Find the eigenvalues of $A$. \\
+$\det(\lambda I-A)=\begin{bmatrix}
+\lambda+1 &  0 &  -1 \\
+1 &  \lambda-3 &  0 \\
+4 & -13 & \lambda+1 \\
+\end{bmatrix}=0\quad\Rightarrow\quad
+\lambda^3-\lambda^2-\lambda-2=0$\\
+$\Rightarrow \lambda=2, -\frac{1}{2}+\frac{\sqrt{3}i}{2}, -\frac{1}{2}-\frac{\sqrt{3}i}{2}$,\quad algebraic multiplicity $=1,1,1$ \\
+\end{minipage}
+c. \begin{minipage}[t]{\dimexpr\linewidth}
+$3\times 3$ matrix $A$ have 3 distinct eigenvalues. (Theorem 5.2.2.b) $\quad\Rightarrow\quad$ $A$ is diagonalizable.
+\end{minipage}
+\end{minipage} \\
+
+41. \begin{minipage}[t]{\dimexpr\linewidth}
+Find a matrix $P$ that diagonalizes $A$, and compute $P^{-1}AP$. \\
+$A=\begin{bmatrix}
+-7 & -6 \\
+15 & 12
+\end{bmatrix},\quad \det(\begin{bmatrix}
+\lambda+7 & 6 \\
+-15 & \lambda-12
+\end{bmatrix})=0\quad\Rightarrow\quad\lambda^2-5\lambda+6=(\lambda-2)(\lambda-3)=0$ \\
+If $\lambda=2$,\quad $(2I-A)\textbf{x}=\begin{bmatrix}
+9 & 6 \\
+-15 & -10
+\end{bmatrix}\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}=\begin{bmatrix}
+0 \\ 0
+\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}=t\begin{bmatrix}
+-2 \\ 3
+\end{bmatrix}$,\quad $t\in\mathbb{R}$ \\
+If $\lambda=3$,\quad $(3I-A)\textbf{x}=\begin{bmatrix}
+10 & 6 \\
+-15 & -9
+\end{bmatrix}\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}=\begin{bmatrix}
+0 \\ 0
+\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}=t\begin{bmatrix}
+-3 \\ 5
+\end{bmatrix}$,\quad $t\in\mathbb{R}$ \\
+$\Rightarrow A$ has 2 linearly independent eigenvectors. $\quad\Rightarrow\quad A$ is diagonalizable. \\
+Let $P=\begin{bmatrix}
+-2 & -3 \\
+3 & 5
+\end{bmatrix}$ diagonalizes $A$,\quad$P^{-1}=\begin{bmatrix}
+-5 & -3 \\
+3 & 2
+\end{bmatrix}$ \\
+$\Rightarrow P^{-1}AP=\begin{bmatrix}
+-5 & -3 \\
+3 & 2
+\end{bmatrix}\begin{bmatrix}
+-7 & -6 \\
+15 & 12
+\end{bmatrix}\begin{bmatrix}
+-2 & -3 \\
+3 & 5
+\end{bmatrix}=\begin{bmatrix}
+2 & 0 \\
+0 & 3
+\end{bmatrix}$
+\end{minipage} \\
+
+48. \begin{minipage}[t]{\dimexpr\linewidth}
+Find the geometric and algebraic multiplicity of each eigenvalue of the matrix $A$, and determine whether \\
+$A$ is diagonalizable. If $A$ is diagonalizable, then find a matrix $P$ that diagonalizes $A$, and find $P^{-1}AP$. \\
+$A=\begin{bmatrix}
+1 & 2 & -2 \\
+-3 & 4 & 0 \\
+-3 & 1 & 3
+\end{bmatrix},\quad \det(\begin{bmatrix}
+\lambda-1 & -2 & 2 \\
+3 & \lambda-4 & 0 \\
+3 & -1 & \lambda-3
+\end{bmatrix})=0\quad\Rightarrow\quad (\lambda-1)(\lambda-3)(\lambda-4)=0$ \\
+$\Rightarrow \lambda=1,3,4\quad$ algebraic multiplicity $=1,1,1$ \\
+If $\lambda=1$,\quad $(1I-A)\textbf{x}=0\quad\Rightarrow\quad \textbf{x}=\begin{bmatrix}t & t & t\end{bmatrix}^T$,\quad $t\in\mathbb{R}\quad\Rightarrow\quad$ geometric multiplicity = 1\\
+If $\lambda=3$,\quad $(3I-A)\textbf{x}=0\quad\Rightarrow\quad \textbf{x}=\begin{bmatrix}t & 3t & 2t\end{bmatrix}^T$,\quad $t\in\mathbb{R}\quad\Rightarrow\quad$ geometric multiplicity = 1\\
+If $\lambda=4$,\quad $(4I-A)\textbf{x}=0\quad\Rightarrow\quad \textbf{x}=\begin{bmatrix}0 & t & t\end{bmatrix}^T$,\quad $t\in\mathbb{R}\quad\Rightarrow\quad$ geometric multiplicity = 1\\
+$\Rightarrow$ all of the geometric multiplicity is equal to the algebraic multiplicity,  $A$ is diagonalizable. \\
+Let $P=\begin{bmatrix}
+1 & 1 & 0 \\
+1 & 3 & 1 \\
+1 & 2 & 1
+\end{bmatrix}$ diagonalizes $A$,\quad$P^{-1}=\begin{bmatrix}
+1 & -1 & 1 \\
+0 & 1 & -1 \\
+-1 & -1 & 2 
+\end{bmatrix}$ \\
+$\Rightarrow P^{-1}AP=\begin{bmatrix}
+1 & 1 & 0 \\
+1 & 3 & 1 \\
+1 & 2 & 1
+\end{bmatrix}\begin{bmatrix}
+1 & 2 & -2 \\
+-3 & 4 & 0 \\
+-3 & 1 & 3
+\end{bmatrix}\begin{bmatrix}
+1 & -1 & 1 \\
+0 & 1 & -1 \\
+-1 & -1 & 2 
+\end{bmatrix}=\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & 4
+\end{bmatrix}$
+\end{minipage} \\
+
+52. \begin{minipage}[t]{\dimexpr\linewidth}
+Use the method of Eample 5 of Section 5.2 to compute $A^{11}$, where $
+A=\begin{bmatrix}
+-1 & 0 & 1 \\
+0 & 2 & 0 \\
+0 & -3 & 1
+\end{bmatrix}$ \\
+$\det (\begin{bmatrix}
+\lambda+1 & 0 & -1 \\
+0 & \lambda-2 & 0 \\
+0 & 3 & \lambda-1
+\end{bmatrix})=(\lambda+1)(\lambda-2)(\lambda-1)=0
+\quad\Rightarrow\quad \lambda=1,2,-1$ \\
+Let $P=\begin{bmatrix}
+\frac{1}{2} & 1 & \frac{1}{3} \\
+0 & 0 & -\frac{1}{3} \\
+1 & 0 & 1
+\end{bmatrix}$ diagonalizes $A$, $P^{-1}=\begin{bmatrix}
+0 & 3 & 1 \\
+1 & -\frac{1}{2} & -\frac{1}{2} \\
+0 & -3 & 0
+\end{bmatrix}$, Let $PAP^{-1}=\begin{bmatrix}
+1 & 0 & 0 \\
+0 & -1 & 0 \\
+0 & 0 & 2
+\end{bmatrix}=D$ \\
+$A^{11}=P^{-1}D^{11}P=\begin{bmatrix}
+\frac{1}{2} & 1 & \frac{1}{3} \\
+0 & 0 & -\frac{1}{3} \\
+1 & 0 & 1
+\end{bmatrix}\begin{bmatrix}
+1 & 0 & 0 \\
+0 & -1 & 0 \\
+0 & 0 & 2048
+\end{bmatrix}\begin{bmatrix}
+0 & 3 & 1 \\
+1 & -\frac{1}{2} & -\frac{1}{2} \\
+0 & -3 & 0
+\end{bmatrix}=\begin{bmatrix}
+-1 & -2046 & 1 \\
+0 & 2048 & 0 \\
+0 & -6141 & 1
+\end{bmatrix}$
+\end{minipage}
+
+77. \begin{minipage}[t]{\dimexpr\linewidth}
+Find the eigenvalues and bases for the eigenspaces of $A$. \\
+$A=\begin{bmatrix}
+4 & -2 \\
+4 & 0
+\end{bmatrix},\quad\det(\begin{bmatrix}
+\lambda-4 & 2 \\
+-4 & \lambda
+\end{bmatrix})=\lambda^2-4\lambda+8=0\quad\Rightarrow\quad\lambda=2\pm 2i$ \\
+If $\lambda=2+2i,\quad((2+2i)I-A)\textbf{x}=\begin{bmatrix}
+2i-2 & 2 \\
+-4 & 2i+2
+\end{bmatrix}\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}=\begin{bmatrix}
+0 \\ 0
+\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}=t\begin{bmatrix}
+1 \\ 1-i
+\end{bmatrix},\quad t\in\mathbb{R}$ \\
+If $\lambda=2-2i,\quad((2-2i)I-A)\textbf{x}=\begin{bmatrix}
+-2-2i & 2 \\
+-4 & 2-2i
+\end{bmatrix}\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}=\begin{bmatrix}
+0 \\ 0
+\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}=t\begin{bmatrix}
+1 \\ 1+i
+\end{bmatrix},\quad t\in\mathbb{R}$ \\
+$\Rightarrow\begin{bmatrix}1 & 1-i\end{bmatrix}^T$ for $\lambda=2+2i$,\quad$\begin{bmatrix}1, 1+i\end{bmatrix}^T$ for $\lambda=2-2i$
+\end{minipage} \\
+
+84. \begin{minipage}[t]{\dimexpr\linewidth}
+Matrix $C$ has form (15) of Section 5.3. Theorem 5.3.7 implies that $C$ is the product of a scaling matrix \\
+with factor $|\lambda|$ and a rotation matrix with angle $\phi$. Find $|\lambda|$ and $\phi$ for which $-\pi<\phi\leq\pi$.
+\[
+C=\begin{bmatrix}
+-2\sqrt{2} & 2\sqrt{2} \\
+-2\sqrt{2} & -2\sqrt{2}
+\end{bmatrix}
+\]
+$\begin{bmatrix}
+-2\sqrt{2} & 2\sqrt{2} \\
+-2\sqrt{2} & -2\sqrt{2}
+\end{bmatrix}=\begin{bmatrix}
+|\lambda| & 0 \\
+0 & |\lambda|
+\end{bmatrix}\begin{bmatrix}
+\cos\phi & -\sin\phi \\
+\sin\phi & \cos\phi
+\end{bmatrix}=\begin{bmatrix}
+|\lambda|\cos\phi & -|\lambda|\sin\phi \\
+|\lambda|\sin\phi & |\lambda|\cos\phi
+\end{bmatrix}\ \Rightarrow\  -2\sqrt{2}=|\lambda|\cos\phi=|\lambda|\sin\phi$
+\[
+\Rightarrow\lambda^2 \cos^2 \phi+\lambda^2 \sin^2 \phi = \lambda^2 = 8+8 = 16\quad\Rightarrow\quad|\lambda|=4,\quad\cos\phi=\sin\phi=\frac{-2\sqrt{2}}{4}=-\frac{1}{\sqrt{2}},\quad\phi = -\frac{3\pi}{4}
+\]
+\end{minipage}\\
+
+86. \begin{minipage}[t]{\dimexpr\linewidth}
+Find an invertible matrix $P$ and a matrix $C$ of form (15) of Section 5.3 such that $A=PCP^{-1}$. \\
+$A=\begin{bmatrix}
+-2 & 5 \\
+-2 & 4
+\end{bmatrix},\quad\det(\begin{bmatrix}
+\lambda+2 & -5 \\
+2 & \lambda-4
+\end{bmatrix})=\lambda^2-2\lambda+2=0\quad\Rightarrow\quad\lambda=1\pm i$ \\
+$\Rightarrow((1-i)I-A)\textbf{v}=\begin{bmatrix}
+3-i & -5 \\
+2 & -3-i
+\end{bmatrix}\begin{bmatrix}
+v_1 \\ v_2
+\end{bmatrix}=\begin{bmatrix}
+0 \\ 0
+\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+v_1 \\ v_2
+\end{bmatrix}=t\begin{bmatrix}
+i+3 \\ 2
+\end{bmatrix},\quad t\in\mathbb{R}$ \\
+$\Rightarrow C=\begin{bmatrix}
+1 & -1 \\
+1 & 1
+\end{bmatrix},\quad P=\begin{bmatrix}
+3 & 1 \\
+2 & 0
+\end{bmatrix}\quad\Rightarrow\quad P^{-1}=\begin{bmatrix}
+0 & \frac{1}{2} \\
+1 & -\frac{3}{2}
+\end{bmatrix}$ \\
+$\Rightarrow A=PCP^{-1}=\begin{bmatrix}
+3 & 1 \\
+2 & 0
+\end{bmatrix}\begin{bmatrix}
+1 & -1 \\
+1 & 1
+\end{bmatrix}\begin{bmatrix}
+0 & \frac{1}{2} \\
+1 & -\frac{3}{2}
+\end{bmatrix}=\begin{bmatrix}
+-2 & 5 \\
+-2 & 4
+\end{bmatrix}$
+\end{minipage} \\
+
+97. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+The two parts of this exercise lead you through a proof of Theorem 5.3.8. \\
+a. For notational simplicity, let $M=\begin{bmatrix}
+a & -b \\
+b & a
+\end{bmatrix}$ and let $\textbf{u}=\mathrm{Re}(\textbf{x})$ and $\textbf{v}=\mathrm{Im}(\textbf{x})$, so $P=\begin{bmatrix}
+\textbf{u}\ |\ \textbf{v}
+\end{bmatrix}$. Show that the relationship $A\textbf{x}=\lambda\textbf{x}$ implies that $A\textbf{x}=(a\textbf{u}+b\textbf{v})+i(-b\textbf{u}+a\textbf{v})$ and then equate real and imaginary parts in this equation to show that $AP=\begin{bmatrix}
+A\textbf{u}\ |\ A\textbf{v}
+\end{bmatrix}=\begin{bmatrix}
+a\textbf{u}+b\textbf{v}\ |\ -b\textbf{u}+a\textbf{v}
+\end{bmatrix}=PM$.\\
+$\det(M-\lambda I)=\det(\begin{bmatrix}
+a-\lambda & -b \\
+b & a-\lambda
+\end{bmatrix})=0\quad\Rightarrow\quad\lambda=a\pm bi\quad\Rightarrow\quad\begin{bmatrix}
+\pm bi & -b \\
+b & \pm bi
+\end{bmatrix}\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}=0,\quad\lambda=a\pm bi$ \\
+$\Rightarrow\textbf{u}=\begin{bmatrix}
+1 \\ i
+\end{bmatrix},\quad\textbf{v}=\begin{bmatrix}
+i \\ 1
+\end{bmatrix}\quad\Rightarrow\quad A\textbf{x}=(a\textbf{u}+b\textbf{v})+i(-b\textbf{u}+a\textbf{v})=(a-bi)\textbf{u}+(b+ai)\textbf{v}=\lambda\textbf{x}$\\
+$\Rightarrow AP=\begin{bmatrix}
+A\textbf{u}\ |\ A\textbf{v}
+\end{bmatrix}=\begin{bmatrix}
+a\textbf{u}+b\textbf{v}\ |\ -b\textbf{u}+a\textbf{v}
+\end{bmatrix}=PM$ \\
+
+b. Show that $P$ is invertible, thereby completing the proof, since the result in part (a) implies that $A=PMP^{-1}$ [ Hint : If $P$ is not invertible, then one of its column vectors is a real scalar multiple of the other, say $\textbf{v}=c\textbf{u}$. Substitute this into the equations $A\textbf{u}=a\textbf{u}+b\textbf{v}$ and $A\textbf{v}=-b\textbf{u}+a\textbf{v}$ obtained in part (a), and show that $(1+c^2 )b\textbf{u}=0$. Finally, show that this leads to a contradiction, thereby proving that $P$ is invertible. ]
+\[
+\mathrm{Let\ }P \mathrm{\ is\ not\ invertible\ and\ }\textbf{v}=c\textbf{u}\quad\Rightarrow\quad A\textbf{u}=a\textbf{u}+b\textbf{v}=(a+bc)\textbf{u}\quad\Rightarrow\quad A\textbf{v}=Ac\textbf{u}=-b\textbf{u}+ac\textbf{u}
+\]
+\[
+\Rightarrow A\textbf{u}=\frac{-b\textbf{u}+a(c\textbf{u})}{c}=(a+bc)\textbf{u}\quad\Rightarrow\quad ac\textbf{u}+bc^2\textbf{u}+b\textbf{u}-ac\textbf{u}=(1+c^2)b\textbf{u}=0\quad\rightarrow\leftarrow
+\]
+\[
+\Rightarrow P \mathrm{\ is\ invertible.}
+\]
+\end{minipage}
+
+
+\end{CJK}
+\end{document}

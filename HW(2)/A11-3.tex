@@ -1,0 +1,94 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subfigure}
+\setlength{\parindent}{0em}
+\linespread{1.3}
+\author{andersonwu2000}
+\pagestyle{empty}
+\thispagestyle{empty} 
+\usepackage[margin=1cm]{geometry}
+\newcounter{sect}
+
+\newcounter{block}[sect]
+\newenvironment{tblock}[1]
+{\refstepcounter{block}\theblock.sim\begin{minipage}[t]{\dimexpr\linewidth}#1\\}
+{\end{minipage}\\}
+
+\newenvironment{comm}
+{\makebox[12pt][l]{$\bullet$}\begin{minipage}[t]{\dimexpr\linewidth}}
+{\end{minipage}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
+
+\hfill 2021/5/25 吳至堯 U10811023
+
+11.63. Let $m<n$, $V$ be open in $\mathbb{R}^n$, and $f, g_j : V\rightarrow\mathbb{R}$ be $C^1$ on $V$ for $j=1, 2, \cdots, m$. \\
+Suppose that there is an $\mathbf{a}\in V$ such that $\displaystyle\frac{\partial(g_1, \cdots, g_m)}{\partial(x_1, \cdots, x_m)}(\mathbf{a})\ne0$. \\
+If $f(\mathbf{a})$ is a local extremum of $f$ subject to the constraints $g_k(\mathbf{a})=0, k=1,\cdots, m$, \\
+then there exist scalars $\lambda_1, \lambda_2, \cdots, \lambda_m$ such that $\displaystyle\nabla f(\mathbf{a})+\sum_{k=1}^m\lambda_k\nabla g_k(\mathbf{a})=\mathbf{0}$. \\
+$Proof$. Let $p=n-m$, $\mathbf{g}=(g_1, \cdots, g_m)$ \\
+Since $\displaystyle\frac{\partial(g_1, \cdots, g_m)}{\partial(x_1, \cdots, x_m)}(\mathbf{a})\ne0\quad\Rightarrow\quad\exists!\ \mathbf{\lambda}=(\lambda_1, \cdots, \lambda_m)\in\mathbb{R}^m$ s.t. $\mathbf{\lambda}D\mathbf{g}(\mathbf{a})=-\nabla\mathbf{f(\mathbf{a})}$ \\
+Take $\mathbf{y}_0\in\mathbb{R}^m$, $\mathbf{t}_0\in\mathbb{R}^p$ with $\mathbf{a}=(\mathbf{y}_0, \mathbf{t}_0)\quad\Rightarrow\quad\mathbf{g}(\mathbf{y}_0, \mathbf{t}_0)=\mathbf{0}$ and $\displaystyle\frac{\partial(g_1, \cdots, g_m)}{\partial(x_1, \cdots, x_m)}(\mathbf{y}_0, \mathbf{t}_0)\ne0$ \\
+By the Implicit Function Theorem, $\exists\ W\subset\mathbb{R}^p$ s.t. $\mathbf{t}_0\in W$ and \\
+\hspace*{2em}$\exists!\ \mathbf{h}:W\rightarrow\mathbb{R}^m$ s.t. $\mathbf{h}$ is $C^1$ on $W$, $\mathbf{h}(\mathbf{t}_0)=\mathbf{y}_0$ and $\mathbf{g}(\mathbf{h}(\mathbf{t}), \mathbf{t})=\mathbf{0}$ for all $\mathbf{t}\in W$ \\
+Let $k\in\{1, \cdots, m\}$ and $\mathbf{H}(\mathbf{t})=(\mathbf{h}(\mathbf{t}), \mathbf{t})$ for all $\mathbf{t}\in W$ \\
+Since $g_k(\mathbf{h}(\mathbf{t}), \mathbf{t})=g_k(\mathbf{H}(\mathbf{t}))=0$ for all $\mathbf{t}\in W\quad\Rightarrow\quad Dg_k(\mathbf{H}(\mathbf{t}_0))D\mathbf{H}(\mathbf{t}_0)=\mathbf{0}$ \\
+$\displaystyle\Rightarrow\quad\sum_{j=1}^n\frac{\partial g_k}{\partial x_j}(\mathbf{a})\frac{\partial H_j}{\partial t_l}(\mathbf{t}_0)
+=\sum_{j=1}^m\frac{\partial g_k}{\partial x_j}(\mathbf{a})\frac{\partial h_j}{\partial t_l}(\mathbf{t}_0)+\frac{\partial g_k}{\partial x_{m+l}}(\mathbf{a})
+=0$ for all $l=1, \cdots, m$ \\
+$\displaystyle\Rightarrow\quad\sum_{k=1}^m\lambda_k\left(\sum_{j=1}^m\frac{\partial g_k}{\partial x_j}(\mathbf{a})\frac{\partial h_j}{\partial t_l}(\mathbf{t}_0)+\frac{\partial g_k}{\partial x_{m+l}}(\mathbf{a})\right)
+=\sum_{j=1}^m\left(\sum_{k=1}^m\lambda_k\frac{\partial g_k}{\partial x_j}(\mathbf{a})\right)\frac{\partial h_j}{\partial t_l}(\mathbf{t}_0)+\sum_{k=1}^m\lambda_k\frac{\partial g_k}{\partial x_{m+l}}(\mathbf{a})$ \\
+\hspace*{2em}$\displaystyle
+=-\sum_{j=1}^m\frac{\partial f}{\partial x_j}(\mathbf{a})\frac{\partial h_j}{\partial t_l}(\mathbf{t}_0)+\sum_{k=1}^m\lambda_k\frac{\partial g_k}{\partial t_l}(\mathbf{a})
+=0$ for all $l=1, \cdots, m$ \\
+Suppose that $f(\mathbf{a})$ is a local extremum of $f$ subject to the constraints $\mathbf{g}(\mathbf{a})=0$ \\
+Let $E=\{\mathbf{x}\in V:\mathbf{g}(\mathbf{x})=\mathbf{0}\}\quad\Rightarrow\quad\exists\ r_1>0$ s.t. $\nabla f(\mathbf{a})=0$ on $B_{r_1}^E(\mathbf{a})$ \\
+Since $\mathbf{t}_0\in W$ and $\mathbf{h}$ is $C^1$ on $W\quad\Rightarrow\quad\exists\ r_2>0$ s.t. $\mathbf{t}\in B_{r_2}(\mathbf{t}_0)$ implies $\mathbf{H}(\mathbf{t})\in B_{r_1}^E(\mathbf{a})$ \\
+$\Rightarrow\quad
+\nabla f(\mathbf{a})D\mathbf{H}(\mathbf{t}_0)
+=\nabla f(\mathbf{H}(\mathbf{t}_0))D\mathbf{H}(\mathbf{t}_0)
+=\mathbf{0}$ \\
+$\displaystyle\Rightarrow\quad
+\sum_{j=1}^m\frac{\partial f}{\partial x_j}(\mathbf{a})\frac{\partial h_j}{\partial t_l}(\mathbf{t}_0)+\frac{\partial f}{\partial t_l}(\mathbf{a})
+=0
+=\sum_{j=1}^m\frac{\partial f}{\partial x_j}(\mathbf{a})\frac{\partial h_j}{\partial t_l}(\mathbf{t}_0)-\sum_{k=1}^m\lambda_k\frac{\partial g_k}{\partial t_l}(\mathbf{a})
+$ for all $l=1, \cdots, m$ \\
+$\displaystyle\Rightarrow\quad
+\frac{\partial f}{\partial t_l}(\mathbf{a})+\sum_{k=1}^m\lambda_k\frac{\partial g_k}{\partial t_l}(\mathbf{a})
+=0$ for all $l=1, \cdots, m$ \\
+Hence $\displaystyle\nabla f(\mathbf{a})+\sum_{k=1}^m\lambda_k\nabla g_k(\mathbf{a})=\mathbf{0}$ \\
+\hspace*{2em}where $f(\mathbf{a})$ is a local extremum of $f$ subject to the constraints $g_k(\mathbf{a})=0$ for $k=1,\cdots, m$ \\
+
+\clearpage
+
+11.62. Find all points on the ellipsoid $x^2+2y^2+3z^2=1$ which lie closest to or farthest from the origin. \\
+$Solution$. Let $\mathbf{a}=(a_1, a_2, a_3)\in\mathbb{R}^3, f(x, y, z)=x^2+y^2+z^2$ and $g(x, y, z)=x^2+2y^2+3z^2-1$ \\
+$\Rightarrow\quad\exists\ \lambda\in\mathbb{R}$ s.t. $\nabla f+\lambda\nabla g=\mathbf{0}\quad\Rightarrow\quad(2x, 2y, 2z)+\lambda(2x, 4y, 6z)=\mathbf{0}$ \\
+$\Rightarrow\quad2x+2\lambda x=2y+4\lambda y=2z+6\lambda z=0\quad\Rightarrow\quad\lambda=-1$ or $x=0$ \\
+If $\lambda=-1\quad\Rightarrow\quad y=z=0$ and $x=\pm1\quad\Rightarrow\quad(x, y, z)=(\pm1, 0, 0)$ \\
+If $x=0$ and $y\ne0\quad\Rightarrow\quad\lambda=-1/2$ and $z=0\quad\Rightarrow\quad2y^2=1\quad\Rightarrow\quad(x, y, z)=(0, \pm1/\sqrt{2}, 0)$ \\
+If $x=0$ and $y=0\quad\Rightarrow\quad3z^2=1\quad\Rightarrow\quad(x, y, z)=(0, 0, \pm1/\sqrt{3})$ \\
+Since $g(x, y, z)=0$ is a ellipse and $f(\pm1, 0, 0)=1>f(0, \pm1/\sqrt{2}, 0)=1/2>f(0, 0, \pm1/\sqrt{3})=1/3$ \\
+Hence the maximum distance occurs at $(\pm1, 0, 0)$ and the minimum distance occurs at $(0, 0, \pm1/\sqrt{3})$ \\
+
+11.64. Find all extrema of $x^2+y^2+z^2$ subject to the constraints $x-y=1$ and $y^2-z^2=1$. \\
+$Solution$. Let $f(x, y, z)=x^2+y^2+z^2$, $g_1(x, y, z)=x-y-1$ and $g_2(x, y, z)=y^2-z^2-1$ \\
+$\Rightarrow\quad\exists\ \lambda_1, \lambda_2\in\mathbb{R}$ s.t. $\nabla f+\lambda_1\nabla g_1+\lambda_2\nabla g_2=\mathbf{0}\quad\Rightarrow\quad(2x, 2y, 2z)+\lambda_1(1, -1, 0)+\lambda_2(0, 2y, -2z)=\mathbf{0}$ \\
+$\Rightarrow\quad2x+\lambda_1=2y-\lambda_1+2\lambda_2y=2z-2\lambda_2z=0\quad\Rightarrow\quad\lambda_2=1$ or $z=0$ \\
+If $\lambda_2=1\quad\Rightarrow\quad\lambda_1=4y\quad\Rightarrow\quad x=-2y$ \\
+Since $g_1(x, y, z)=g_2(x, y, z)=0\quad\Rightarrow\quad-3y=1\quad\Rightarrow\quad z^2=-8/9\ne0\quad\rightarrow\leftarrow$ \\
+If $z=0\quad\Rightarrow\quad y=\pm1\quad\Rightarrow\quad(x, y)=(2, 1)$ or $0, -1$ \\
+$\Rightarrow\quad(x_0, y_0, z_0)=(2, 1, 0)$ or $(0, -1, 0)$ if $(x_0, y_0, z_0)$ is extrema \\
+Since $f(2, 1, 0)=5>f(0, -1, 0)=1$, $f(3, 2, \sqrt{3})=16>5$ and $g_1(3, 2, \sqrt{3})=g_2(3, 2, \sqrt{3})=0$ \\
+$\Rightarrow\quad(2, 1, 0)$ is not extrema \\
+Suppose that $(x_0, y_0, z_0)\ne(0, -1, 0)$, $f(x_0, y_0, z_0)<f(0, -1, 0)=1$ and $g_2(x_0, y_0, z_0)=0$ \\
+$\Rightarrow\quad0<y_0^2<1$ and $0<z_0^2\quad\Rightarrow\quad0<y_0^2=z_0^2+1<1\quad\rightarrow\leftarrow$ \\
+Hence $(0, -1, 0)$ is minimum of $x^2+y^2+z^2$ subject to the constraints $x-y=1$ and $y^2-z^2=1$
+
+\end{CJK}
+\end{document}

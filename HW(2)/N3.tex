@@ -1,0 +1,50 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\setlength{\parindent}{0em}
+\linespread{1.3}
+\author{andersonwu2000}
+\usepackage[margin=2cm]{geometry}
+\pagestyle{empty}
+\thispagestyle{empty} 
+
+\newcounter{sect}
+
+\newcounter{block}[sect]
+\newenvironment{tblock}[1]
+{\refstepcounter{block}\theblock.sim\begin{minipage}[t]{\dimexpr\linewidth}#1\\}
+{\end{minipage}\\}
+
+\newenvironment{comm}
+{\makebox[12pt][l]{$\bullet$}\begin{minipage}[t]{\dimexpr\linewidth}}
+{\end{minipage}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
+
+\hfill 吳至堯 U10811023
+
+Show that every positive integer has a unique Zeckendorf representation. \\
+Let $P(n)$ is true iff $n\in\mathbb{N}$ and $n$ has a Zeckendorf representation. \\
+Since $f_1=1, f_2=1, f_3=2\quad\Rightarrow\quad P(1), P(2)$ is true \\
+Suppose that $n\in\mathbb{N}$ and $P(k)$ is true for all $2\le k<n,\ k\in\mathbb{N}$ \\
+If $\exists\ m\in\mathbb{N}$ such that $f_m=n\quad\Rightarrow\quad P(n)$ is true \\
+Else, $\exists\ m\in\mathbb{N}$ such that $f_m<n<f_{m+1}\quad\Rightarrow\quad\exists\ a\in\mathbb{N}$ such that $a=n-f_m$ \\
+Since $2\le a<n\quad\Rightarrow\quad P(a)$ is true \\
+Since $n=a+f_m$, $a=n-f_m<f_{m+1}-f_m=f_{m-1}$ and $P(a)$ is true $\quad\Rightarrow\quad P(n)$ is true \\
+Hence, $\forall n\in\mathbb{N}$, $n$ has a Zeckendorf representation \\
+Let two sets of non-consecutive Fibonacci numbers $R, S$ have the same sum, $R\ne\varnothing$, $S\ne\varnothing$ \\
+Since $R/S=R-R\cap S$ and $S/R=S-R\cap S\quad\Rightarrow\quad S/R$ and $R/S$ has the same sum \\
+Assume that $R\cap S\ne\varnothing$ \\
+Let $\max R/S=f_r,\quad\max S/R=f_s$ \\
+Since $R/S\cap S/R=\varnothing\quad\Rightarrow\quad f_r\ne f_s$ \\
+W.L.O.G., If $f_r>f_s\quad\Rightarrow\quad$ sum of $S/R<f_{s+1}\le f_r\le$ sum of $R/S\rightarrow\leftarrow$ \\
+Since $S/R$ and $R/S$ has the same sum$\quad\Rightarrow\quad S/R=R/S=\varnothing\quad\Rightarrow\quad R=S$ \\
+Hence, $\forall n\in\mathbb{N}$, $n$ has a unique Zeckendorf representation \\\\
+
+將學號後四碼用 Zeckendorf representation 表示 \\
+Fibonacci numbers : 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, ... \\
+$1023 = 987+34+2$
+\end{CJK}
+\end{document}

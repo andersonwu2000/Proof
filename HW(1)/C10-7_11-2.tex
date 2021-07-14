@@ -1,0 +1,49 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\setlength{\parindent}{0em}
+\linespread{1.3}
+\author{andersonwu2000}
+\pagestyle{empty}
+\thispagestyle{empty} 
+
+\newcounter{sect}
+
+\newcounter{block}[sect]
+\newenvironment{tblock}[1]
+{\refstepcounter{block}\theblock.~\begin{minipage}[t]{\dimexpr\linewidth}#1\\}
+{\end{minipage}\\}
+
+\newenvironment{comm}
+{\makebox[12pt][l]{$\bullet$}\begin{minipage}[t]{\dimexpr\linewidth}}
+{\end{minipage}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
+
+\hfill 章節 10-7~11-2 吳至堯 U10811023 \\
+
+10.7.ex40 \\
+\begin{minipage}[t]{\dimexpr\linewidth}
+Find the length of the curve $y=x^{2/3}$, $x\in[1,8]$. \\
+HINT : Work with the mirror image $y=x^{3/2}$, $x\in[1,4]$ \\
+$\displaystyle L=\int_1^4\sqrt{(\frac{dx}{dx})^2+(\frac{dx^{3/2}}{dx})^2}dx=\int_1^4\sqrt{1+(\frac{3}{2}\sqrt{x})^2}dx=\int_1^4\sqrt{1+\frac{9x}{4}}dx$ \\
+Let $\displaystyle u=1+\frac{9x}{4}\quad\Rightarrow\quad dx=\frac{4}{9}du$ \\
+$\displaystyle\int_1^4\sqrt{1+\frac{9x}{4}}dx$
+\begin{minipage}[t]{\dimexpr\linewidth}
+$\displaystyle=\frac{4}{9}\int_\frac{13}{4}^{10}\sqrt{u}du=\frac{4}{9}\int_\frac{13}{4}^{10}u^\frac{1}{2}du=\left.\frac{4}{9}\frac{2}{3}u^\frac{3}{2}\right|_\frac{13}{4}^{10}$ \\
+$\displaystyle=\frac{8}{27}(10\sqrt{10}-\frac{13}{8}\sqrt{13})=\frac{10\sqrt{80}-13\sqrt{13}}{27}=L$
+\end{minipage}
+\end{minipage} \\\\
+
+11.2.ex43 \\
+\begin{minipage}[t]{\dimexpr\linewidth}
+If $0<c<d$, then the sequence $a_n=(c^n+d^n)^{1/n}$ is bounded and monotonic. \\
+$2d=(d^n+d^n)^{1/n}>a_n=(c^n+d^n)^{1/n}>(0^n+d^n)^{1/n}=d$ and $a_n$ is bounded. \\
+$\Rightarrow\displaystyle\frac{a_{n+1}^{n+1}}{a_n^{n+1}}=\frac{(c^{n+1}+d^{n+1})}{(c^n+d^n)^{1+1/n}}=\frac{c}{a_n}\frac{c^n+\frac{d}{c}d^n}{c^nd^n}<\frac{c}{a_n}<\frac{c}{2d}<1$ \\
+Hence $a_n$ is bounded and monotonic.
+\end{minipage} \\\\
+
+\end{CJK}
+\end{document}

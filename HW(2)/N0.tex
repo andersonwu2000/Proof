@@ -1,0 +1,80 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\setlength{\parindent}{0em}
+\linespread{1.3}
+\author{andersonwu2000}
+\usepackage[margin=2cm]{geometry}
+\pagestyle{empty}
+\thispagestyle{empty} 
+
+\newcounter{sect}
+
+\newcounter{block}[sect]
+\newenvironment{tblock}[1]
+{\refstepcounter{block}\theblock.sim\begin{minipage}[t]{\dimexpr\linewidth}#1\\}
+{\end{minipage}\\}
+
+\newenvironment{comm}
+{\makebox[12pt][l]{$\bullet$}\begin{minipage}[t]{\dimexpr\linewidth}}
+{\end{minipage}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
+
+\hfill 吳至堯 U10811023
+
+作業 : 利用 1-9 、 9-1 (順序不變) 及加減運算符號，排出答案等於學號後兩碼的算式\\
+$1+2+3+4-5-6+7+8+9=23$ \\
+$1-23+45-6+7+8-9=23$ \\
+$1-23+45+6-7-8+9=23$ \\
+$1+2-3-4+5-67+89=23$ \\
+$1-2+3+4-5-67+89=23$ \\
+$9+8+7-6-5+4+3+2+1=23$ \\
+$98-76+5-4-3+2+1=23$ \\
+$98-76-5+4+3-2+1=23$ \\
+$9-8-7+6+54-32+1=23$ \\
+$-9+8+7-6+54-32+1=23$ \\
+
+討論 : 訂一個可以將自然數分為兩類的規則 \\
+對於自然數 $n$，存在兩個質數 $p_1, p_2$ 使得 $p_1^2+p_2^2=n^2$ \\
+我想把滿足這個條件的自然數分為一類，不滿足的分為一類 \\
+
+其他 : \\
+用 1,2,3,4 造出 1 到 100 所有整數的部分 \\
+我印象中在 ppt 上，16 等式右方的指數有格式問題 \\
+其他部分，指數有顯示上的問題 \\\\
+\begin{minipage}{18em}
+$18 = 4^2+(3-1)$ \\
+$19 = 4^2+(3\times1)$ \\
+$20 = 4^2+3+1$ \\
+$22 = (4+1)^2-3$ \\
+$23 = 3^2+14$ \\
+$27 = 3^2\times(4-1)$ \\
+$32 = 4^{(3-1)}\times2$ \\
+$49 = ((4\times1)+3)^2$ \\
+$50 = 41+3^2$ \\
+$51 = (12\times4)+3$, or $(4^2+1)\times3$ \\
+$52 = 4^3-12$ \\
+$60 = 3^4-21$ \\
+$61 = 4^3-(1+2)$
+\end{minipage}
+\begin{minipage}{\dimexpr\linewidth}
+$62 = 43-(1\times2)$ \\
+$63 = 4^3-(2-1)$ \\
+$64 = (2-1)\times4^3$ \\
+$65 = (2-1)+4^3$ \\
+$66 = (2\times1)+4^3$ \\
+$70 = 4^3+(1+2)!$ \\
+$75 = (4+1)^2\times3$ \\
+$79 = 3^4-(2\times1)$ \\
+$80 = 3^4-(2-1)$ \\
+$82 = 3^4+(2-1)$ \\
+$83 = 3^4+(2\times 1)$ \\
+$84 = 3^4+2+1$ \\
+$95 = 3!\times2^4-1$
+\end{minipage}
+
+\end{CJK}
+\end{document}

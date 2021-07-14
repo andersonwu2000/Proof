@@ -1,0 +1,124 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subfigure}
+\setlength{\parindent}{0em}
+\author{andersonwu2000}
+\pagestyle{empty}
+\thispagestyle{empty} 
+
+\newcounter{sect}
+
+\newcounter{block}[sect]
+\newenvironment{tblock}[1]
+{\refstepcounter{block}\theblock.sim\begin{minipage}[t]{\dimexpr\linewidth}#1\\}
+{\end{minipage}\\}
+
+\newenvironment{comm}
+{\makebox[12pt][l]{$\bullet$}\begin{minipage}[t]{\dimexpr\linewidth}}
+{\end{minipage}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
+
+\hfill 2021/6/10 吳至堯 U10811023 \\
+
+7.21. Let $S(x) = \sum_{k=0}^\infty a_k(x-x_0)^k$ be a power series centered at $x_0$. If $R = 1/\limsup_{k\rightarrow\infty} |a_k|^{1/k}$, with the convention that $1/\infty = 0$ and $1/0 = \infty$, then $R$ is the radius of convergence of $S$. In fact, \\
+i. $S(x)$ converges absolutely for each $x\in(x_0-R, x_0+R)$. \\
+ii. $S(x)$ converges uniformly on any closed interval $[a, b] \subset(x_0-R, x_0+R)$. \\
+iii. $S(x)$ diverges for each $x\not\in[x_0-R, x_0+R]$ where $R$ is finite. \\
+$Proof$. Let $x\in\mathbb{R}$ with $x\ne x_0$, $\rho = 1/\limsup_{k\rightarrow\infty} |a_k|^{1/k}$ and 
+\[
+    r(x) 
+    = \limsup_{k\rightarrow\infty} |a_k(x-x_0)^k|^{1/k} 
+    = |x-x_0|\cdot\limsup_{k\rightarrow\infty} |a_k|^{1/k}.
+\]
+If $\rho = 0$, then $\limsup_{k\rightarrow\infty} |a_k|^{1/k} = \infty$ and $r(x) = \infty > 1$. \\
+By Root Test, $S(x) = \sum_{k=0}^\infty a_k(x-x_0)^k$ converges only when $x=x_0$. \\
+Hence $R = 0 = \rho$. \\
+If $\rho = \infty$, then $\limsup_{k\rightarrow\infty} |a_k|^{1/k} = 0$ and $r(x) = 0 < 1$. \\
+By Root Test, $S(x)$ converges absolutely on $R$. \\
+Hence $R = \infty = \rho$. \\
+If $\rho\in(0, \infty)$, then $r(x)=|x-x_0|/\rho$. \\
+Suppose that $x\in(x_0-\rho, x_0+\rho)$, then $|x-x_0| < \rho$ and $r(x)<1$. \\
+By Root Test, $S(x)$ converges when $x\in(x_0-\rho, x_0+\rho)$. \\
+Suppose that $x\not\in[x_0-\rho, x_0+\rho]$, then $|x-x_0| > \rho$ and $r(x)>1$. \\
+By Root Test, $S(x)$ diverges when $x\not\in[x_0-\rho, x_0+\rho]$. \\
+Hence $\rho$ is the radius of convergence of $S$. \\
+Let $[a, b]\subset(x_0-R, x_0+R)$, $x_1\in(x_0-R, a)\cap(b, x_0+R)$, then $|x-x_0| \le |x_1-x_0|$. \\
+Let $M_k = |a_k||x_1-x_0|^k$ for $k\in\mathbb{N}$. \\
+Since $x_1\in(x_0-R, x_0+R)$, then $\sum_{k=0}^\infty M_k = \sum_{k=0}^\infty |a_k||x_1-x_0|^k$ converges. \\
+Since $|a_k(x-x_0)^k|\le M_k$ for $x\in[a, b]$ and $k\in\mathbb{N}$, by Theorem 7.15, $S$ converges uniformly on $[a, b]$. \\
+Hence the proof is complete. \\
+
+7.22. If the limit 
+\[
+    R = \lim_{k\rightarrow\infty}\frac{|a_k|}{|a_{k+1}|}
+\]
+exists as an extended number, then $R$ is the radius of convergence of power series $S(x) = \sum_{k=0}^\infty a_k(x-x_0)^k$. \\
+$Proof$. Let $x\in\mathbb{R}$ with $x\ne x_0$, $\rho = \lim_{k\rightarrow\infty}|a_k|/|a_{k+1}|$ and 
+\[
+    r(x) 
+    = \lim_{k\rightarrow\infty} \frac{|a_{k+1}(x-x_0)^{k+1}|}{|a_k(x-x_0)^k|}
+    = |x-x_0|\cdot\lim_{k\rightarrow\infty} \frac{|a_{k+1}|}{|a_k|}.
+\]
+If $\rho = 0$, then $\lim_{k\rightarrow\infty}|a_{k+1}|/|a_k| = \infty$ and $r(x) = \infty > 1$. \\
+By Ratio Test, $S(x)$ converges only when $x=x_0$. \\
+Hence $R = 0 = \rho$. \\
+If $\rho = \infty$, then $\lim_{k\rightarrow\infty}|a_{k+1}|/|a_k| = 0$ and $r(x) = 0 < 1$. \\
+By Ratio Test, $S(x)$ converges absolutely on $R$. \\
+Hence $R = \infty = \rho$. \\
+If $\rho\in(0, \infty)$, then $r(x) = |x-x_0|/\rho$. \\
+Suppose that $x\in(x_0-\rho, x_0+\rho)$, then $|x-x_0| < \rho$ and $r(x)<1$. \\
+By Ratio Test, $S(x)$ converges when $x\in(x_0-\rho, x_0+\rho)$. \\
+Suppose that $x\not\in[x_0-\rho, x_0+\rho]$, then $|x-x_0| > \rho$ and $r(x)>1$. \\
+By Ratio Test, $S(x)$ diverges when $x\not\in[x_0-\rho, x_0+\rho]$. \\
+Hence $R$ is the radius of convergence of $S$. \\
+
+7.26. If $f(x)=\sum_{k=0}^\infty a_k(x-x_0)^k$ is a power series with positive radius of convergence $R$, then $f$ is continuous on $(x_0-R, x_0+R)$. \\
+$Proof$. Let $x_1\in(x_0-R, x_0+R)$, then $\exists\ a, b\in\mathbb{R}$ such that $x_0-R < a < x_1$ and $x_1 > b > x_0+R$. \\
+By Theorem 7.21.i, f converges uniformly on $[a, b]$. \\
+Since $a_k(x-x_0)^k$ is continuous at $x_1$ for all $k\in\mathbb{N}$, by Theorem 7.14.i, $f$ is continuous at $x_1$. \\
+Hence $f$ is continuous on $(x_0-R, x_0+R)$. \\
+
+\clearpage
+
+7.27. Suppose that $[a, b]$ is nondegenerate. If $f(x) := \sum_{k=0}^\infty a_k(x-x_0)^k$ converges on $[a, b]$, then $f(x)$ is continuous and converges uniformly on $[a, b]$. \\
+$Proof$. Let $\varepsilon>0$. \\
+Since $[a, b]$ is nondegenerate and $f$ converges on $[a, b]$, then $\exists\ x_0\in\mathbb{R}$ and $R\in(0, \infty)$ such that $f$ converges on $(x_0-R, x_0+R)$ and diverges for $|x-x_0|>R$, it follows that $[a, b]\subset[x_0-R, x_0+R]$. \\
+Let $x_1\in[a, b]$ with $x_1\ne x_0$ and
+\[
+    g(x) = \left\{\begin{matrix}
+  b - x_0 & x_0 < x \\
+  a - x_0 & x \le x_0.
+\end{matrix}\right.
+\]
+Set $b_k = a_k(g(x_1))^k$, $c_k = (x_1-x_0)^k/(g(x_1))^k$ for $k\in\mathbb{N}$. \\
+Since $f$ converges on $[a, b]$, then $\sum_{k=1}^\infty b_k = \sum_{k=1}^\infty a_k(g(x_1))^k$ converges and $\exists\ N\in\mathbb{N}$ with $N>1$ such that 
+\[
+    k>m\ge N\quad\text{imply}\quad
+    \left| \sum_{j=m}^k b_j \right|
+    < \varepsilon.
+\]
+If $x_0 < x_1$, then $0 < x_1-x_0 \le b-x_0 = g(x_1)$ and $c_k$ is decreasing. \\
+If $x_1 < x_0$, then $a-x_0 = g(x_1) \le x_1-x_0 < 0$ and $c_k$ is decreasing. \\
+By Abel's Formula, 
+\begin{eqnarray*}
+\left| \sum_{k=m}^n a_k(x_1-x_0)^k \right| 
+    & = & \left| \sum_{k=m}^n b_k c_k \right| \\
+    & = & \left| c_n\sum_{k=m}^n b_k - \sum_{k=m}^{n-1} (c_{k+1}-c_k)\sum_{j=m}^k b_j \right| \\
+    & < & \left| c_n\varepsilon - \varepsilon\sum_{k=m}^{n-1} (c_{k+1}-c_k) \right| \\
+    & = & c_n\varepsilon + (c_m - c_n)\varepsilon = c_m\varepsilon.
+\end{eqnarray*}
+Since $0 < c_m \le c_1 = (x_1-x_0)/g(x_1) \le 1$, then 
+\[
+    \left| \sum_{k=m}^n a_k(x_1-x_0)^k \right| < c_m\varepsilon \le \varepsilon.
+\]
+Since $\left| \sum_{k=m}^n a_k(x_0-x_0)^k \right| = 0 < \varepsilon$, then $f$ converges uniformly on $[a, b]$. \\
+Hence the proof is complete. \\
+
+\end{CJK}
+\end{document}

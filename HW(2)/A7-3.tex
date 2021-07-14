@@ -1,0 +1,50 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subfigure}
+\setlength{\parindent}{0em}
+\author{andersonwu2000}
+\pagestyle{empty}
+\thispagestyle{empty} 
+
+\newcounter{sect}
+
+\newcounter{block}[sect]
+\newenvironment{tblock}[1]
+{\refstepcounter{block}\theblock.sim\begin{minipage}[t]{\dimexpr\linewidth}#1\\}
+{\end{minipage}\\}
+
+\newenvironment{comm}
+{\makebox[12pt][l]{$\bullet$}\begin{minipage}[t]{\dimexpr\linewidth}}
+{\end{minipage}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
+
+\hfill 2021/6/3 吳至堯 U10811023 \\
+
+7.15. Let $E$ be a nonempty subset of $\mathbb{R}$, let $f_k:E\rightarrow\mathbb{R}$, $k\in\mathbb{N}$, and suppose that $M_k\ge0$ satisfies $\sum_{k=1}^\infty M_k<\infty$. If $|f_k(x)|\le M_k$ for $k\in\mathbb{N}$ and $x\in E$, then $\sum_{k=1}^\infty f_k$ converges absolutely and uniformly on $E$. \\
+$Proof$. Let $\varepsilon>0$. \\
+Since $\sum_{k=1}^\infty M_k\in\mathbb{R}$, by the Cauchy Criterion, $\exists\ N\in\mathbb{N}$ such that 
+\[
+m\ge n\ge N\quad\text{implies}\quad\sum_{k=n}^m M_k<\varepsilon.
+\]
+Let $n, m\in\mathbb{N}$ with $m\ge n\ge N$. \\
+W.L.O.G., suppose that $m\ge n$. \\
+Since $|f_k(x)|\le M_k$ for $k\in\mathbb{N}$ and $x\in E$,
+\[
+\left|\sum_{k=1}^n f_k(x)-\sum_{k=1}^m f_k(x)\right|
+=\left|\sum_{k=n+1}^m f_k(x)\right|
+\le\sum_{k=n+1}^m |f_k(x)|
+\le\sum_{k=n+1}^m M_k
+<\varepsilon
+\]
+for $x\in E$. \\
+By Lemma 7.11 and the Cauchy Criterion, $\sum_{k=1}^\infty f_k$ uniformly on $E$ and $\sum_{k=1}^\infty |f_k(x)|$ converges on $E$. \\
+Hence the proof is complete.
+
+\end{CJK}
+\end{document}

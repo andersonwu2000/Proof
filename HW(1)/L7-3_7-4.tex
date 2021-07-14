@@ -1,0 +1,319 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\setlength{\parindent}{0em}
+\linespread{1.3}
+\author{andersonwu2000}
+\usepackage[margin=1cm]{geometry}
+\pagestyle{empty}
+\thispagestyle{empty} 
+
+\newcounter{sect}
+
+\newcounter{block}[sect]
+\newenvironment{tblock}[1]
+{\refstepcounter{block}\theblock.~\begin{minipage}[t]{\dimexpr\linewidth}#1\\}
+{\end{minipage}\\}
+
+\newenvironment{comm}
+{\makebox[12pt][l]{$\bullet$}\begin{minipage}[t]{\dimexpr\linewidth}}
+{\end{minipage}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
+
+\hfill 章節 7-3~7-4 吳至堯 U10811023
+
+% 48 54 63b 64b 65   78 80 84 87 88
+
+48. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find an orthogonal change of variables that eliminates the cross product terms in the quadratic from $Q=3x^2_1+6x^2_2+6x^2_3+4x_1x_2-4x_1x_3-8x_2x_3$, and express $Q$ in terms of the new variables. \\
+Let $A=\begin{bmatrix}
+3 & 2 & -2 \\
+2 & 6 & -4 \\
+-2 & -4 & 6
+\end{bmatrix}\quad\Rightarrow\quad\det(\lambda I-A)=(x-2)^2(x-11)=0\quad\Rightarrow\quad\lambda=2, 2, 11$ \\
+If $\lambda=2$,\ $(2I-A)\textbf{x}=\begin{bmatrix}
+-1 & -2 & 2 \\
+-2 & -4 & 4 \\
+2 & 4 & -4
+\end{bmatrix}\begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix}=\textbf{0}\quad\Rightarrow\quad\textbf{x}=\begin{bmatrix}
+x_1 \\ x_2 \\ \frac{1}{2}x_1+x_2
+\end{bmatrix}=t\begin{bmatrix}
+2 \\ 0 \\ 1
+\end{bmatrix}+r\begin{bmatrix}
+0 \\ 1 \\ 1
+\end{bmatrix},\quad t,r\in\mathbb{R}$ \\
+If $\lambda=11$,\ $(11I-A)\textbf{x}=\begin{bmatrix}
+8 & -2 & 2 \\
+-2 & 5 & 4 \\
+2 & 4 & 5
+\end{bmatrix}\begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix}=\textbf{0}\quad\Rightarrow\quad\textbf{x}=\begin{bmatrix}
+x_1 \\ 2x_1 \\ -2x_1
+\end{bmatrix}=t\begin{bmatrix}
+1 \\ 2 \\ -2
+\end{bmatrix},\quad t\in\mathbb{R}$ \\
+Gram-Schmidt process$\quad\Rightarrow\quad$Let $\textbf{u}_1=\frac{1}{3\sqrt{2}}\begin{bmatrix}
+4 \\ -1 \\ 1
+\end{bmatrix}=\begin{bmatrix}
+\frac{4}{3\sqrt{2}} \\ \frac{-1}{3\sqrt{2}} \\ \frac{1}{3\sqrt{2}}
+\end{bmatrix},
+\textbf{u}_2=\frac{1}{\sqrt{2}}\begin{bmatrix}
+0 \\ 1 \\ 1
+\end{bmatrix}=\begin{bmatrix}
+0 \\ \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}}
+\end{bmatrix},
+\textbf{u}_3=\begin{bmatrix}
+\frac{1}{3} \\ \frac{2}{3} \\ \frac{-2}{3}
+\end{bmatrix}$ \\
+Let $P=\begin{bmatrix}
+\frac{4}{3\sqrt{2}} & \frac{-1}{3\sqrt{2}} & \frac{1}{3\sqrt{2}} \\
+0 & \frac{1}{\sqrt{2}} & \frac{-2}{3} \\
+\frac{1}{\sqrt{5}} & \frac{1}{\sqrt{2}} & \frac{2}{3}
+\end{bmatrix}$ is orthogonal matrix$\quad\Rightarrow\quad P^TAP=\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 11
+\end{bmatrix}$
+\end{minipage}\\
+
+54. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Identify the conic section represented by the equation by rotating axes to place the conic in standard position. Find an equation of the conic in the rotated coordinates, and find the angle of rotation. \\
+$2x^2-12xy-3y^2-7=0\quad\Rightarrow\quad$ Let $A=\begin{bmatrix}
+2 & -6 \\
+-6 & -3
+\end{bmatrix},\textbf{x}=\begin{bmatrix}
+x \\ y
+\end{bmatrix}$ \\
+$\Rightarrow\det(A-\lambda I)=\left|\begin{matrix}
+2-\lambda & -6 \\
+-6 & -3-\lambda
+\end{matrix}\right|=(\lambda+7)(\lambda-6)=0\quad\Rightarrow\quad\lambda=-7, 6$ \\
+If $\lambda=-7,\ (-7I-A)\textbf{x}=\begin{bmatrix}
+9 & -6 \\
+-6 & 4
+\end{bmatrix}\begin{bmatrix}
+x \\ y
+\end{bmatrix}=0\quad\Rightarrow\quad\begin{bmatrix}
+x \\ y
+\end{bmatrix}=t\begin{bmatrix}
+1 \\ \frac{3}{2}
+\end{bmatrix},\quad t\in\mathbb{R}$ \\
+If $\lambda=6,\ (6I-A)\textbf{x}=\begin{bmatrix}
+-4 & -6 \\
+-6 & -9
+\end{bmatrix}\begin{bmatrix}
+x \\ y
+\end{bmatrix}=0\quad\Rightarrow\quad\begin{bmatrix}
+x \\ y
+\end{bmatrix}=t\begin{bmatrix}
+1 \\ -\frac{2}{3}
+\end{bmatrix},\quad t\in\mathbb{R}$ \\
+$\begin{bmatrix}
+1 \\ \frac{3}{2}
+\end{bmatrix}, \begin{bmatrix}
+1 \\ -\frac{2}{3}
+\end{bmatrix}$ orthogonal$\quad\Rightarrow\quad$Let $\textbf{u}_1=\begin{bmatrix}
+\frac{2}{\sqrt{13}} \\ \frac{3}{\sqrt{13}}
+\end{bmatrix}, \textbf{u}_2=\begin{bmatrix}
+-\frac{3}{\sqrt{13}} \\ \frac{2}{\sqrt{13}}
+\end{bmatrix}, P=\begin{bmatrix}
+\frac{2}{\sqrt{13}} & \frac{-3}{\sqrt{13}} \\ 
+\frac{3}{\sqrt{13}} & \frac{2}{\sqrt{13}}
+\end{bmatrix}$ \\
+$\Rightarrow$ Equation of the conic is $\textbf{x}^T(P^TAP)\textbf{x}=\textbf{x}^T\begin{bmatrix}
+-7 & 0 \\
+0 & 6
+\end{bmatrix}\textbf{x}=-7x^2+6y^2=7$ \\
+Let $P=\begin{bmatrix}
+\frac{2}{\sqrt{13}} & \frac{-3}{\sqrt{13}} \\ 
+\frac{3}{\sqrt{13}} & \frac{2}{\sqrt{13}}
+\end{bmatrix}=\begin{bmatrix}
+\cos\theta & -\sin\theta \\
+\sin\theta & \cos\theta
+\end{bmatrix}\quad\Rightarrow\quad\theta=\arcsin\frac{3}{\sqrt{13}}\approx56.31^\circ$
+\end{minipage}\\
+
+\clearpage
+
+63,64. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Show that the matrix $A$ is positive definite first by using Thm 7.3.2. and second by using Thm 7.3.4. 
+\end{minipage}
+
+63(b). \begin{minipage}[t]{\dimexpr\linewidth-2em}
+$A=\begin{bmatrix}
+5 & -4 & 0 \\
+-4 & 5 & 0 \\
+0 &  0 & 3
+\end{bmatrix},\quad A^T=A\quad\Rightarrow\quad A$ is a symmetric matrix \\
+(Thm 7.3.2.) $\det(A-\lambda I)=\left|\begin{matrix}
+5-\lambda & -4 & 0 \\
+-4 & 5-\lambda & 0 \\
+0 &  0 & 3-\lambda
+\end{matrix}\right|=(3-\lambda)((5-\lambda)^2-16)=(\lambda-1)(\lambda-3)(\lambda-9)=0$ \\
+$\Rightarrow\lambda=1, 3, 9>0\quad\Rightarrow\quad A$ is positive definite. \\
+(Thm 7.3.4.) $\det\left(\begin{bmatrix}
+5
+\end{bmatrix}\right)=5>0,\quad\det\left(\begin{bmatrix}
+5 & -4 \\
+-4 & 5
+\end{bmatrix}\right)=9>0,\quad\det\left(\begin{bmatrix}
+5 & -4 & 0 \\
+-4 & 5 & 0 \\
+0 &  0 & 3
+\end{bmatrix}\right)=27>0$ \\
+$\Rightarrow A$ is positive definite.
+\end{minipage}\\
+
+64(b). \begin{minipage}[t]{\dimexpr\linewidth-2em}
+$A=\begin{bmatrix}
+4 & 1 & 0 \\
+-2 & 1 & 0 \\
+0 &  0 & 1
+\end{bmatrix},\quad A^T\ne A\quad\Rightarrow\quad A$ is not a symmetric matrix $\quad\Rightarrow\quad A$ is not positive definite. \\
+\end{minipage}\\
+
+65. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find all values of $k$ for which the quadratic form is positive definite. \\
+$5x^2_1+x^2_2+kx^2_3+4x_1x_2-2x_1x_3-2x_2x_3\quad\Rightarrow\quad$ Let $A=\begin{bmatrix}
+5 & 2 & -1 \\
+2 & 1 & -1 \\
+-1 & -1 & k
+\end{bmatrix}$ \\
+$\det\left(\begin{bmatrix}
+5
+\end{bmatrix}\right)=5>0,\quad\det\left(\begin{bmatrix}
+5 & 2 \\
+2 & 1
+\end{bmatrix}\right)=1>0,\quad\det\left(\begin{bmatrix}
+5 & 2 & -1 \\
+2 & 1 & -1 \\
+-1 & -1 & k
+\end{bmatrix}\right)=k-2>0\quad\Rightarrow\quad k>2$
+\end{minipage}\\
+
+78. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find the maximum and minimum values of the given quadratic form subject to the constraint $x^2+y^2+z^2=1$ and determine the values of $x, y, z$ at which the maximum and minimum occur. \\
+$x^2+2y^2+z^2+2xy+2yz\quad\Rightarrow\quad$ Let $A=\begin{bmatrix}
+1 & 1 & 0 \\
+1 & 2 & 1 \\
+0 & 1 & 1
+\end{bmatrix},\quad\det(A-\lambda I)=-\lambda(\lambda-1)(\lambda-3)\quad\Rightarrow\quad\lambda=0, 1, 3$ \\
+If $\lambda=0,\ A\begin{bmatrix}
+x \\ y \\ z
+\end{bmatrix}=0\quad\Rightarrow\quad\begin{bmatrix}
+x \\ y \\ z
+\end{bmatrix}=t\begin{bmatrix}
+1 \\ -1 \\ 1
+\end{bmatrix}$,\quad If $\lambda=3,\ (A-3I)\begin{bmatrix}
+x \\ y \\ z
+\end{bmatrix}=0\quad\Rightarrow\quad\begin{bmatrix}
+x \\ y \\ z
+\end{bmatrix}=t\begin{bmatrix}
+1 \\ 2 \\ 1
+\end{bmatrix},\quad t\in\mathbb{R}$ \\
+$\Rightarrow$ orthonormalize $\quad\Rightarrow\quad$ maximum : $\displaystyle\left(\frac{1}{\sqrt{6}}, \frac{2}{\sqrt{6}}, \frac{1}{\sqrt{6}}, 3\right)$,\quad minimum : $\displaystyle\left(\frac{1}{\sqrt{3}}, \frac{-1}{\sqrt{3}}, \frac{1}{\sqrt{3}}, 0\right)$
+\end{minipage}\\
+
+80. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Use the method of Example 2 of Section 7.4. to find the maximum and minimum values of $x^2+2xy+y^2$ subject to the constraint $x^2+4y^2=4$. \\
+$\displaystyle x^2+4y^2=4\quad\rightarrow\quad\left(\frac{x}{2}\right)^2+y^2=1\quad\Rightarrow\quad$ Let $\displaystyle 2x_1=x,\ y_1=y\quad\Rightarrow\quad x^2+2xy+y^2=4x_1^2+4x_1y_1+y_1^2$ \\
+Let $A=\begin{bmatrix}
+4 & 2 \\
+2 & 1 
+\end{bmatrix},\quad\det(A-\lambda I)=(4-\lambda)(1-\lambda)-4=0\quad\Rightarrow\quad\lambda=0, 5$ \\
+If $\lambda=0,\ A\begin{bmatrix}
+x_1 \\ y_1
+\end{bmatrix}=0\quad\Rightarrow\quad\begin{bmatrix}
+x_1 \\ y_1
+\end{bmatrix}=t\begin{bmatrix}
+-1 \\ 2
+\end{bmatrix}$,\quad If $\lambda=5,\ (A-5I)\begin{bmatrix}
+x_1 \\ y_1
+\end{bmatrix}=0\quad\Rightarrow\quad\begin{bmatrix}
+x_1 \\ y_1
+\end{bmatrix}=t\begin{bmatrix}
+2 \\ 1
+\end{bmatrix},\quad t\in\mathbb{R}$ \\
+$\Rightarrow$ orthonormalize $\quad\Rightarrow\quad$ maximum : $\displaystyle\left(\frac{4}{\sqrt{5}}, \frac{1}{\sqrt{5}}, 5\right)$,\quad minimum : $\displaystyle\left(\frac{-2}{\sqrt{5}}, \frac{2}{\sqrt{5}}, 0\right)$
+\end{minipage}\\
+
+84(a). \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Show that the function $f(x, y)=x^3-9xy-y^3$ has critical points at (0,0) and (-3,3). \\
+$\Rightarrow\left\{\begin{matrix}
+f_x(x, y) = 3x^2-9y = 0 \\
+f_y(x, y) = -9x-3y^2= 0
+\end{matrix}\right.$ at critical point \\ $\displaystyle\Rightarrow 9x^2-27y=y^4-27y=y(y-3)(y^2+3y+9)=0\quad\Rightarrow\quad$ If $y\in\mathbb{R},\quad y=0, 3\quad\Rightarrow\quad x=0, -3$
+\end{minipage}\\
+
+84(b). \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Use the Hessian form of the second derivative test to show $f$ has a relative maximum at $(-3, 3)$ and a saddle point at $(0,0)$. \\
+$H(x,y)=\begin{bmatrix}
+f_{xx}(x, y) & f_{xy}(x, y) \\
+f_{xy}(x, y) & f_{yy}(x, y)
+\end{bmatrix}=\begin{bmatrix}
+6x & -9 \\
+-9 & -6y
+\end{bmatrix}\quad\Rightarrow\quad\det(H(x, y))=-36xy-81$ \\
+At $(0, 0),\quad\det(H(x, y))=-81<0\quad\Rightarrow\quad f$ has a saddle point at $(0, 0)$ \\
+At $(-3, 3),\quad\det(H(x, y))=243>0,\quad f_{xx}(x, y)=-18<0\quad\Rightarrow\quad f$ has a relative maximum at $(-3, 3)$
+\end{minipage}\\
+
+87,88. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find the critical points of $f$, if any, and classify them as relative maxima, relative minima, or saddle points.
+\end{minipage}
+
+87. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+$f(x, y)=6(x+1)^2+y^2-(x+1)^2y=(6-y)x^2+y^2+(12-2y)x-y+6$ \\
+$\Rightarrow\left\{\begin{matrix}
+f_x(x, y) = 12x-2yx-2y+12 = 0 \\
+f_y(x, y) = -x^2-2x+2y-1  = 0
+\end{matrix}\right.$ at critical point $\quad\Rightarrow\quad$ If $x\in\mathbb{R},\quad x=-1\quad\Rightarrow\quad y=0$\\
+$\Rightarrow H(x,y)=\begin{bmatrix}
+f_{xx}(x, y) & f_{xy}(x, y) \\
+f_{xy}(x, y) & f_{yy}(x, y)
+\end{bmatrix}=\begin{bmatrix}
+12-2y & -2x-2 \\
+-2x-2 & 2
+\end{bmatrix}$ \\
+At $(-1, 0),\quad\det(H(-1, 0))=24>0,\quad f_{xx}(-1, 0)=12>0\quad\Rightarrow\quad f$ has a relative minimum at $(-1, 0)$
+\end{minipage}\\
+
+88. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+$f(x, y)=x^3+y^3-12x-12y\quad\Rightarrow\quad\left\{\begin{matrix}
+f_x(x, y) = 3x^2-12 = 0 \\
+f_y(x, y) = 3y^2-12 = 0
+\end{matrix}\right.$ at critical point $\quad\Rightarrow\quad x=\pm2,\quad y=\pm2$\\
+$\Rightarrow H(x,y)=\begin{bmatrix}
+f_{xx}(x, y) & f_{xy}(x, y) \\
+f_{xy}(x, y) & f_{yy}(x, y)
+\end{bmatrix}=\begin{bmatrix}
+6x & 0  \\
+0 & 6y
+\end{bmatrix}$ \\
+\begin{minipage}[t]{6.5em}
+At $( 2, 2),\quad$ \\
+At $(-2,-2),\quad$ \\
+At $(-2, 2),\quad$ \\
+At $( 2,-2),\quad$
+\end{minipage}
+\begin{minipage}[t]{13em}
+$\det(H( 2, 2))= 144>0,\quad$ \\
+$\det(H(-2,-2))= 144>0,\quad$ \\
+$\det(H(-2, 2))=-144<0$ \\
+$\det(H( 2,-2))=-144<0$
+\end{minipage}
+\begin{minipage}[t]{15em}
+$f_{xx}( 2, 2)= 12>0$ \\
+$f_{xx}(-2,-2)=-12<0$ \\
+\end{minipage} \\
+$f$ has a relative minimum at $(2, 2)$,\quad a relative maximum at $(-2, -2)$,\\ two saddle points at $(-2, 2), (2, -2)$
+\end{minipage}\\
+
+\end{CJK}
+\end{document}

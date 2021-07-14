@@ -1,0 +1,48 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\setlength{\parindent}{0em}
+\linespread{1.3}
+\author{andersonwu2000}
+\pagestyle{empty}
+\thispagestyle{empty} 
+
+\newcounter{sect}
+
+\newcounter{block}[sect]
+\newenvironment{tblock}[1]
+{\refstepcounter{block}\theblock.~\begin{minipage}[t]{\dimexpr\linewidth}#1\\}
+{\end{minipage}\\}
+
+\newenvironment{comm}
+{\makebox[12pt][l]{$\bullet$}\begin{minipage}[t]{\dimexpr\linewidth}}
+{\end{minipage}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
+
+\hfill 章節 8-6 吳至堯 U10811023 \\
+
+8.6.ex13 \begin{minipage}[t]{\dimexpr\linewidth}
+$\displaystyle\int\frac{\sqrt{x-1}+1}{\sqrt{x-1}-1}\ dx$ \\
+Let $\displaystyle u^2 = x-1,\quad du=\frac{dx}{2u}$ \\
+$\displaystyle\Rightarrow\int \frac{\sqrt{x-1}+1}{\sqrt{x-1}-1}\ dx$ \begin{minipage}[t]{\dimexpr\linewidth}
+$\displaystyle=\int\frac{u+1}{u-1}\ 2udu=\int\frac{2u^2+2u}{u-1}\ du$ \\
+$\displaystyle=\int 2u+4+\frac{4}{u-1}\ du=u^2+4u+4\ln\mid u-1\mid+C$ \\
+$\displaystyle=x+4\sqrt{x-1}+4\ln\mid\sqrt{x-1}-1\mid+C$
+\end{minipage}
+\end{minipage} \\\\
+
+8.6.ex27 \begin{minipage}[t]{\dimexpr\linewidth}
+$\displaystyle\int\frac{1}{\sin x+\tan x}\ dx$ \\
+Let $\displaystyle u=\tan\frac{x}{2},\quad\sin x=\frac{2u}{1+u^2},\quad\tan x=\frac{2u}{1-u^2},\quad du=\frac{1+u^2}{2}dx$ \\
+$\displaystyle\Rightarrow\int\frac{1}{\sin x+\tan x}\ dx$ \begin{minipage}[t]{\dimexpr\linewidth}
+$\displaystyle=\int\frac{1}{\frac{2u}{1+u^2}+\frac{2u}{1-u^2}}\frac{2}{1+u^2}\ du$ \\ $\displaystyle=\int\frac{1}{\frac{2u(1+u^2+1-u^2)}{(1+u^2)(1-u^2)}}\frac{2}{1+u^2}\ du=\int\frac{1-u^2}{2u}\ du$ \\
+$\displaystyle=\int-\frac{u}{2}+\frac{1}{2u}\ du=\frac{1}{2}\ln\mid u\mid-\frac{1}{2}\frac{u^2}{2}+C$ \\
+$\displaystyle=\frac{1}{2}\ln\mid\tan\frac{1}{2}x\mid-\frac{1}{4}\tan^2\frac{1}{2}x+C$
+\end{minipage}
+\end{minipage}
+
+\end{CJK}
+\end{document}

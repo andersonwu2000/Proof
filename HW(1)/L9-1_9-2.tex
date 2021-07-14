@@ -1,0 +1,328 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\setlength{\parindent}{0em}
+\linespread{1.3}
+\author{andersonwu2000}
+\usepackage[margin=1cm]{geometry}
+\pagestyle{empty}
+\thispagestyle{empty} 
+
+\newcounter{sect}
+
+\newcounter{block}[sect]
+\newenvironment{tblock}[1]
+{\refstepcounter{block}\theblock.~\begin{minipage}[t]{\dimexpr\linewidth}#1\\}
+{\end{minipage}\\}
+
+\newenvironment{comm}
+{\makebox[12pt][l]{$\bullet$}\begin{minipage}[t]{\dimexpr\linewidth}}
+{\end{minipage}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
+
+\hfill 章節 9-1 9-2 吳至堯 U10811023
+
+% 2 4 7 11 19
+% 24 26 28 34b 35
+
+2. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Use the method of Example 1 from Section 9.1 and the $LU$-decomposition \\
+$A=\begin{bmatrix}
+ 3 & -6 & -3 \\
+ 2 &  0 &  6 \\
+-4 &  7 &  4 \\
+\end{bmatrix}=\begin{bmatrix}
+ 3 &  0 &  0 \\
+ 2 &  4 &  0 \\
+-4 & -1 &  2 \\
+\end{bmatrix}\begin{bmatrix}
+ 1 & -2 & -1 \\
+ 0 &  1 &  2 \\
+ 0 &  0 &  1 \\
+\end{bmatrix}$ to solve the system $\begin{matrix}
+3x_1 & -6x_2 & -3x_3 & = & -3 \\
+2x_1 && +6x_3 & = & -22 \\
+-4x_1 & +7x_2 & 4x_3 & = & 3
+\end{matrix}$ \\
+Let $U\textbf{x}=\textbf{y}\quad\Rightarrow\quad L\textbf{y}=\begin{bmatrix}
+-3 \\ -22 \\ 3
+\end{bmatrix}\quad\Rightarrow\quad\textbf{y}=\begin{bmatrix}
+-1 \\ -5 \\ -3
+\end{bmatrix}\quad\Rightarrow\quad U\textbf{x}=\begin{bmatrix}
+-1 \\ -5 \\ -3
+\end{bmatrix}\quad\Rightarrow\quad\textbf{x}=\begin{bmatrix}
+-2 \\ 1 \\ -3
+\end{bmatrix}$
+\end{minipage}\\
+
+4,7. Find an $LU$-decomposition of the coefficient matrix, and then use the method of Example 1 in Section 9.1 to solve the system.
+
+4. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+$\begin{bmatrix}
+2 & 4 & -2 \\
+6 & 0 & 3  \\
+4 & 2 & 4
+\end{bmatrix}\begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix}=\begin{bmatrix}
+4 \\ 15 \\ 6
+\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+2 & 4 & -2 \\
+6 & 0 & 3  \\
+4 & 2 & 4
+\end{bmatrix}=\begin{bmatrix}
+2 & 0 & 0 \\
+6 &-12& 0  \\
+4 & 8 & 2
+\end{bmatrix}\begin{bmatrix}
+1 & 2 & -1 \\
+0 & 1 & -\frac{3}{4}  \\
+0 & 0 & 1
+\end{bmatrix}=LU\quad\Rightarrow\quad$ Let $U\textbf{x}=\textbf{y}$ \\
+$\Rightarrow L\textbf{y}=\begin{bmatrix}
+4 \\ 15 \\ 6
+\end{bmatrix}\quad\Rightarrow\quad\textbf{y}=\begin{bmatrix}
+2 \\ -\frac{1}{4} \\ 0
+\end{bmatrix}\quad\Rightarrow\quad U\textbf{x}=\begin{bmatrix}
+2 \\ -\frac{1}{4} \\ 0
+\end{bmatrix}\quad\Rightarrow\quad\textbf{x}=\begin{bmatrix}
+\frac{5}{2} \\ -\frac{1}{4} \\ 0
+\end{bmatrix}$
+\end{minipage}\\
+
+7. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+$\begin{bmatrix}
+-2 &  0 & -2 &  2 \\
+ 2 &  1 &  1 &  0 \\
+ 1 &  2 &  0 &  1 \\
+ 0 &  1 & -3 &  7
+\end{bmatrix}\begin{bmatrix}
+x_1 \\ x_2 \\ x_3 \\ x_4
+\end{bmatrix}=\begin{bmatrix}
+4 \\ -6 \\ -3 \\ -10
+\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+-2 &  0 & -2 &  2 \\
+ 2 &  1 &  1 &  0 \\
+ 1 &  2 &  0 &  1 \\
+ 0 &  1 & -3 &  7
+\end{bmatrix}=\begin{bmatrix}
+-2 &  0 &  0 &  0 \\
+ 2 &  1 &  0 &  0 \\
+ 1 &  2 &  1 &  0 \\
+ 0 &  1 & -2 &  1
+\end{bmatrix}\begin{bmatrix}
+1 & 0 &  1 & -1 \\
+0 & 1 & -1 &  2 \\
+0 & 0 &  1 & -2 \\
+0 & 0 &  0 &  1
+\end{bmatrix}=LU$ \\
+Let $U\textbf{x}=\textbf{y}\quad\Rightarrow\quad L\textbf{y}=\begin{bmatrix}
+4 \\ -6 \\ -3 \\ -10
+\end{bmatrix}\quad\Rightarrow\quad\textbf{y}=\begin{bmatrix}
+-2 \\ -2 \\ 3 \\ -2
+\end{bmatrix}\quad\Rightarrow\quad\textbf{x}=\begin{bmatrix}
+-3 \\ 1 \\ -1 \\ -2
+\end{bmatrix}$
+\end{minipage}\\
+
+11. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find the $LDU$-decomposition of $A=\begin{bmatrix}
+3 & -12 &  6 \\
+0 &   2 &  0 \\
+6 & -28 & 13
+\end{bmatrix}$ \\
+$\Rightarrow A=\begin{bmatrix}
+3 & 0 & 0 \\
+0 & 2 & 0 \\
+6 & 4 & 1
+\end{bmatrix}\begin{bmatrix}
+1 & -4 & 2 \\
+0 &  1 & 0 \\
+0 &  0 & 1
+\end{bmatrix}=\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+2 & 2 & 1
+\end{bmatrix}\begin{bmatrix}
+3 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 1
+\end{bmatrix}\begin{bmatrix}
+1 & -4 & 2 \\
+0 &  1 & 0 \\
+0 &  0 & 1
+\end{bmatrix}=LDU$
+\end{minipage}\\
+
+19. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find a $PLU$-decomposition of $A$, and use it to solve the linear system $A\textbf{x}=\textbf{b}$ by the method of Exercises 17. (Solve the linear system by rewriting it as $P^{-1}A\textbf{x}=P^{-1}\textbf{b}$ and solving this system by $LU$-decomposition.) $A=\begin{bmatrix}
+0 & 3 & -2 \\
+1 & 1 &  4 \\
+2 & 2 &  5
+\end{bmatrix},\ \textbf{b}=\begin{bmatrix}
+7 \\ 5 \\ -2
+\end{bmatrix}\quad\Rightarrow\quad A=\begin{bmatrix}
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 1
+\end{bmatrix}\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 3 & 0 \\
+2 & 0 &-3
+\end{bmatrix}\begin{bmatrix}
+1 & 1 & 4 \\
+0 & 1 & -\frac{2}{3} \\
+0 & 0 & 1
+\end{bmatrix}$ \\
+$\Rightarrow\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 3 & 0 \\
+2 & 0 &-3
+\end{bmatrix}\begin{bmatrix}
+1 & 1 & 4 \\
+0 & 1 & -\frac{2}{3} \\
+0 & 0 & 1
+\end{bmatrix}\textbf{x}=\begin{bmatrix}
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 1
+\end{bmatrix}\begin{bmatrix}
+7 \\ 5 \\ -2
+\end{bmatrix}=\begin{bmatrix}
+5 \\ 7 \\ -2
+\end{bmatrix}\quad\Rightarrow\quad\textbf{x}=\begin{bmatrix}
+-16 \\ 5 \\ 4
+\end{bmatrix}$
+\end{minipage}\\
+
+24. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+The distinct eigenvalues of a matrix are given. Determine whether $A$ has a dominant eigenvalue, and if so, find it. \\
+\end{minipage}\\
+
+24.a. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+$\lambda_1=2, \lambda_2=0, \lambda_3=-4, \lambda_4=3\quad\Rightarrow\quad\mid\lambda_3\mid>\mid\lambda_4\mid>\mid\lambda_1\mid>\mid\lambda_2\mid\quad\Rightarrow\quad$ dominant eigenvalue is  $\lambda_3=-4$
+\end{minipage}\\
+
+24.b. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+$\lambda_1=-4, \lambda_2=3, \lambda_3=-2, \lambda_4=4\quad\Rightarrow\quad\mid\lambda_1\mid=\mid\lambda_4\mid>\mid\lambda_2\mid>\mid\lambda_3\mid\quad\Rightarrow\quad$ A has no dominant eigenvalue
+\end{minipage}\\
+
+26. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Apply the power method with Euclidean scaling to the matrix $A$, starting with $\textbf{x}_0$ and stopping at $\textbf{x}_4$. Compare the resulting approximations to the exact values of the dominant eigenvalue and the corresponding unit eigenvector. $A=\begin{bmatrix}
+ 7 & -2 &  0 \\
+-2 &  6 & -2 \\
+ 0 & -2 &  0 
+\end{bmatrix},\ \textbf{x}_0=\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix}\quad\Rightarrow\quad\det(\lambda I-A)=0$ \\
+$\quad\Rightarrow\quad\lambda=9, 6, 3\quad\Rightarrow\quad$ If $(9I-A)\textbf{x}=\textbf{0}\quad\Rightarrow\quad\textbf{x}=t\begin{bmatrix}
+2 & -2 & 1
+\end{bmatrix}^T=t\begin{bmatrix}
+\frac{2}{3} & -\frac{2}{3} & \frac{1}{3}
+\end{bmatrix}^T,\quad t\in\mathbb{R}$ \\
+$\displaystyle\Rightarrow A\textbf{x}_0=\begin{bmatrix}
+7 \\ -2 \\ 0
+\end{bmatrix},\quad\textbf{x}_1=\frac{A\textbf{x}_0}{\parallel A\textbf{x}_0\parallel}\approx\begin{bmatrix}
+0.962 \\ -0.275 \\ 0
+\end{bmatrix}\quad\Rightarrow A\textbf{x}_1\approx\begin{bmatrix}
+7.294 \\ -3.574 \\ 0.55
+\end{bmatrix},\quad\textbf{x}_2=\frac{A\textbf{x}_1}{\parallel A\textbf{x}_1\parallel}\approx\begin{bmatrix}
+0.896 \\ -0.44 \\ 0.068
+\end{bmatrix}$ \\
+$\displaystyle\Rightarrow A\textbf{x}_2\approx\begin{bmatrix}
+7.152 \\ -4.568 \\ 1.22
+\end{bmatrix},\quad\textbf{x}_3=\frac{A\textbf{x}_2}{\parallel A\textbf{x}_2\parallel}\approx\begin{bmatrix}
+0.834 \\ -0.533 \\ 0.142
+\end{bmatrix}\quad\Rightarrow A\textbf{x}_3\approx\begin{bmatrix}
+6.904 \\ -5.15 \\ 1.776
+\end{bmatrix},\quad\textbf{x}_4=\frac{A\textbf{x}_3}{\parallel A\textbf{x}_3\parallel}\approx\begin{bmatrix}
+0.785 \\ -0.586 \\ 0.202
+\end{bmatrix}$ \\
+$\Rightarrow \lambda^{(1)}=(A\textbf{x}_1)^T\textbf{x}_1\approx 8,\ \lambda^{(2)}=(A\textbf{x}_2)^T\textbf{x}_2\approx 8.5,\ \lambda^{(3)}=(A\textbf{x}_3)^T\textbf{x}_3\approx 8.755,\ \lambda^{(4)}=(A\textbf{x}_4)^T\textbf{x}_4\approx 8.892\approx9$
+\end{minipage}\\
+
+28. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Apply the power method with maximum entry scaling to the matrix $A$, starting with $\textbf{x}_0$ and stopping at $\textbf{x}_4$. Compare the resulting approximations to the exact values of the dominant eigenvalue and the corresponding scaled eigenvector.
+$A=\begin{bmatrix}
+ 3 &  2 &  2 \\
+ 2 &  2 &  0 \\
+ 0 &  0 &  4 
+\end{bmatrix},\ \textbf{x}_0=\begin{bmatrix}
+1 \\ 1 \\ 1
+\end{bmatrix}\quad\Rightarrow\quad\det(\lambda I-A)=0$ \\
+$\quad\Rightarrow\quad\lambda=6, 3, 0\quad\Rightarrow\quad$ If $(9I-A)\textbf{x}=\textbf{0}\quad\Rightarrow\quad\textbf{x}=t\begin{bmatrix}
+1 & 2 & 1
+\end{bmatrix}^T=t\begin{bmatrix}
+\frac{1}{\sqrt{6}} & \frac{2}{\sqrt{6}} & \frac{1}{\sqrt{6}}
+\end{bmatrix}^T,\quad t\in\mathbb{R}$ \\
+$\displaystyle\Rightarrow A\textbf{x}_0=\begin{bmatrix}
+7 \\ 4 \\ 6
+\end{bmatrix},\quad\textbf{x}_1=\frac{A\textbf{x}_0}{\max(A\textbf{x}_0)}\approx\begin{bmatrix}
+1 \\ \frac{4}{7} \\ \frac{6}{7}
+\end{bmatrix}\quad\Rightarrow A\textbf{x}_1\approx\begin{bmatrix}
+\frac{41}{7} \\ \frac{22}{7} \\ \frac{38}{7}
+\end{bmatrix},\quad\textbf{x}_2=\frac{A\textbf{x}_1}{\max(A\textbf{x}_1)}\approx\begin{bmatrix}
+1 \\ \frac{22}{41} \\ \frac{38}{41}
+\end{bmatrix}$ \\
+$\displaystyle\Rightarrow A\textbf{x}_2\approx\begin{bmatrix}
+\frac{243}{41} \\ \frac{126}{41} \\ \frac{234}{41}
+\end{bmatrix},\quad\textbf{x}_3=\frac{A\textbf{x}_2}{\max(A\textbf{x}_2)}\approx\begin{bmatrix}
+1 \\ \frac{126}{243} \\ \frac{234}{243}
+\end{bmatrix}\quad\Rightarrow A\textbf{x}_3\approx\begin{bmatrix}
+\frac{1449}{243} \\ \frac{738}{243} \\ \frac{1422}{243}
+\end{bmatrix},\quad\textbf{x}_4=\frac{A\textbf{x}_3}{\max(A\textbf{x}_3)}\approx\begin{bmatrix}
+1 \\ \frac{738}{1449} \\ \frac{1422}{1449}
+\end{bmatrix}$ \\
+$\Rightarrow \lambda^{(1)}=\frac{(A\textbf{x}_1)^T\textbf{x}_1}{\textbf{x}^T_1\textbf{x}_1}\approx 5.97,\ \lambda^{(2)}=\frac{(A\textbf{x}_2)^T\textbf{x}_2}{\textbf{x}^T_2\textbf{x}_2}\approx 5.993,\ \lambda^{(3)}=\frac{(A\textbf{x}_3)^T\textbf{x}_3}{\textbf{x}^T_3\textbf{x}_3}\approx 5.998,\ \lambda^{(4)}=\frac{(A\textbf{x}_4)^T\textbf{x}_4}{\textbf{x}^T_4\textbf{x}_4}\approx 5.9995\approx6$
+\end{minipage}\\
+
+34.b. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Use the power method with Euclidean scaling to approximate the dominant eigenvalue and a corresponding eigenvector of $A$. Choose your own starting vector, and stop when the estimated percentage error in the eigenvalue approximation is less than $0.1\%$. \\
+$\begin{bmatrix}
+1 &  0 &  1 & 1 \\
+0 &  2 & -1 & 1 \\
+1 & -1 &  4 & 1 \\
+1 &  1 &  1 & 8
+\end{bmatrix}\quad$ Let $\textbf{x}_0=\begin{bmatrix}
+1 \\ 0 \\ 0 \\ 0
+\end{bmatrix} \displaystyle\quad\Rightarrow A\textbf{x}_0=\begin{bmatrix}
+1 \\ 0 \\ 1 \\ 1
+\end{bmatrix},\quad\textbf{x}_1=\approx\begin{bmatrix}
+0.58 \\ 0 \\ 0.58 \\ 0.58
+\end{bmatrix}\quad\Rightarrow A\textbf{x}_1\approx\begin{bmatrix}
+1.73 \\ 0 \\ 3.46 \\ 5.77
+\end{bmatrix},\\\quad\textbf{x}_2=\frac{A\textbf{x}_1}{\parallel A\textbf{x}_1\parallel}\approx\begin{bmatrix}
+0.25 \\ 0 \\ 0.5 \\ 0.83
+\end{bmatrix}\quad\Rightarrow A\textbf{x}_2\approx\begin{bmatrix}
+1.58 \\ 0.33 \\ 3.07 \\ 7.39
+\end{bmatrix},\quad\textbf{x}_3=\frac{A\textbf{x}_2}{\parallel A\textbf{x}_2\parallel}\approx\begin{bmatrix}
+0.19 \\ 0.04 \\ 0.38 \\ 0.91
+\end{bmatrix}\quad\Rightarrow A\textbf{x}_3\approx\begin{bmatrix}
+1.47 \\ 0.61 \\ 2.56 \\ 7.85
+\end{bmatrix},\\\quad\textbf{x}_4=\frac{A\textbf{x}_3}{\parallel A\textbf{x}_3\parallel}\approx\begin{bmatrix}
+0.18 \\ 0.07 \\ 0.3 \\ 0.93
+\end{bmatrix}\quad\Rightarrow A\textbf{x}_4\approx\begin{bmatrix}
+1.41 \\ 0.77 \\ 2.25 \\ 8.02
+\end{bmatrix},\quad\textbf{x}_5=\frac{A\textbf{x}_4}{\parallel A\textbf{x}_4\parallel}\approx\begin{bmatrix}
+0.17 \\ 0.09 \\ 0.27 \\ 0.95
+\end{bmatrix}\\\quad\Rightarrow \lambda^{(1)}=(A\textbf{x}_1)^T\textbf{x}_1\approx 6.33,\quad \lambda^{(2)}=(A\textbf{x}_2)^T\textbf{x}_2\approx 8.06,\quad \lambda^{(3)}=(A\textbf{x}_3)^T\textbf{x}_3\approx 8.38,\\\quad \lambda^{(3)}=(A\textbf{x}_3)^T\textbf{x}_3\approx 8.48,\quad \lambda^{(4)}=(A\textbf{x}_4)^T\textbf{x}_4\approx 8.5\quad\Rightarrow\quad\left|\frac{8.48-8.5}{8.5}\right|\approx0.1\%$
+\end{minipage}\\
+
+35. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Repeat Exercise 34, but this time stop when all corresponding entries in two successive eigenvector approximations differ by less than 0.01 in absolute value. \\
+$\displaystyle\textbf{x}_5-\textbf{x}_4\approx\begin{bmatrix}
+-0.01 \\ 0.02 \\ -0.04 \\ 0.01
+\end{bmatrix}\quad\Rightarrow\quad\left|\begin{bmatrix}
+-0.01 \\ 0.02 \\ -0.04 \\ 0.01
+\end{bmatrix}\right|\approx\begin{bmatrix}
+0.01 \\ 0.01 \\ 0.01 \\ 0.01
+\end{bmatrix},\quad\lambda^{(4)}=(A\textbf{x}_4)^T\textbf{x}_4\approx 8.5,\quad\textbf{x}_5=\frac{A\textbf{x}_4}{\parallel A\textbf{x}_4\parallel}\approx\begin{bmatrix}
+0.17 \\ 0.09 \\ 0.27 \\ 0.95
+\end{bmatrix}$
+\end{minipage}\\
+
+\end{CJK}
+\end{document}

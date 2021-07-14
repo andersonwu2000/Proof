@@ -1,0 +1,82 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\setlength{\parindent}{0em}
+\linespread{1.3}
+\author{andersonwu2000}
+
+\textwidth=16.6cm
+\textheight=23cm
+\parindent=16pt
+\oddsidemargin=-1.0cm
+\evensidemargin=-1.0cm
+\topmargin=-0.5cm
+
+\newcounter{sect}
+
+\newcounter{block}[sect]
+\newenvironment{tblock}[1]
+{\refstepcounter{block}\theblock.~\begin{minipage}[t]{\dimexpr\linewidth}#1\\}
+{\end{minipage}\\}
+
+\newenvironment{comm}
+{\makebox[12pt][l]{$\bullet$}\begin{minipage}[t]{\dimexpr\linewidth}}
+{\end{minipage}}
+
+\newenvironment{code}
+{\begin{minipage}[t]{\dimexpr\linewidth}\ttfamily }
+{\end{minipage}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
+
+%%--------------------------------------------
+%%--------------------------------------------
+
+constant \\
+$\pi = 3.141592653589793$ \\
+$\ln(2) = 0.6931471805599453$ \\
+$G = 0.915965594177219$ \\
+
+infinite series $\rightarrow$ $\displaystyle\sum_{n=0}^{20000}\left(\frac{1}{16}\right)^n\left(\begin{matrix}2n\\n\end{matrix}\right)^2\frac{H_n^2}{n+m}$
+
+$$\begin{array}{|l|cc|}
+\hline
+\text{m} & 
+\text{finite series} & 
+\text{infinite series} \\
+\hline 
+1 &
+1.07613887533250754110165719389 &
+1.074025205518426096937438105201 \\
+\hline 
+2 &
+-1.72534558043434883232014091667 &
+unknown \\
+\hline 
+3 &
+-1.70697606125311268342749521514 &
+unknown \\
+\hline 
+4 &
+-1.51053326797520574248843074863 &
+unknown \\
+\hline 
+5 &
+-1.32640127317396651312486902478 &
+unknown \\
+\hline 
+6 &
+-1.17319664500564496255345051990 &
+unknown \\
+\hline 
+7 &
+-1.04749900223171280541070351650 &
+unknown \\
+\hline 
+\end{array}$$
+
+
+\end{CJK}
+\end{document}

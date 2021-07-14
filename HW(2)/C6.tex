@@ -1,0 +1,118 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subfigure}
+\setlength{\parindent}{0em}
+\linespread{1.3}
+\author{andersonwu2000}
+\usepackage[margin=1cm]{geometry}
+\pagestyle{empty}
+\thispagestyle{empty} 
+
+\newcounter{sect}
+
+\newcounter{block}[sect]
+\newenvironment{tblock}[1]
+{\refstepcounter{block}\theblock.sim\begin{minipage}[t]{\dimexpr\linewidth}#1\\}
+{\end{minipage}\\}
+
+\newenvironment{comm}
+{\makebox[12pt][l]{$\bullet$}\begin{minipage}[t]{\dimexpr\linewidth}}
+{\end{minipage}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
+
+\hfill 章節 6 吳至堯 U10811023
+
+% 17 44 45
+
+17. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+If $G$ is a group, prove that Aut$(G)$ and Inn$(G)$ are groups. (This exercise is referred to in this chapter.) \\
+\end{minipage}
+
+17.a. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Aut$(G)=\{\phi:G\xrightarrow[onto]{1-1}G\mid \phi(ab)=\phi(a)\phi(b),\ \forall a,b\in G\}$ \\
+1. \begin{minipage}[t]{\dimexpr\linewidth}
+The identity $\varepsilon(x)=x$ of the permutation groups is a bijection \\
+Since $\varepsilon(ab)=\varepsilon(a)\varepsilon(b),\ \forall a,b\in G\quad\Rightarrow\quad\varepsilon$ is the identity of Aut$(G)$
+\end{minipage} \\[5pt]
+2. \begin{minipage}[t]{\dimexpr\linewidth}
+Let $\phi\in$ Aut$(G)\quad\Rightarrow\quad\phi^{-1}$ is a bijection \\
+Since $\forall a,b\in G,\ \exists\ x,y\in G$ s.t. $\phi(x)=a,\ \phi(y)=b$ and $\phi(xy)=ab$ \\
+$\Rightarrow\quad\forall a,b\in G,\ \exists\ x,y\in G$ s.t. $\phi^{-1}(a)\phi^{-1}(b)=\phi^{-1}(ab)=xy$ \\
+Hence $\phi^{-1}\in$ Aut$(G),\ \forall\phi\in$ Aut$(G)$
+\end{minipage} \\[5pt]
+3. \begin{minipage}[t]{\dimexpr\linewidth}
+Let $a,b\in G,\ \phi_1,\phi_2\in$ Aut$(G)\quad\Rightarrow\quad\phi_1\phi_2$ is a bijection \\
+W.L.O.G., $\phi_1\phi_2(ab)=\phi_1(\phi_2(a)\phi_2(b))=\phi_1\phi_2(a)\phi_1\phi_2(b)$ \\
+Hence $\phi_1\phi_2\in$ Aut$(G),\ \forall\phi_1,\phi_2\in$ Aut$(G)$
+\end{minipage} \\[5pt]
+4. \begin{minipage}[t]{\dimexpr\linewidth}
+Since Dom$(\phi)=$ Rng$(\phi),\ \forall\phi\in$ Aut$(G)$ \\
+Hence function composition in Aut$(G)$ is associative
+\end{minipage} \\[5pt]
+Therefore, Aut$(G)$ is a group
+\end{minipage} \\
+
+17.b. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Inn$(G)=\{\phi:G\rightarrow G\mid\forall a\in G,\  \phi_a(x)=axa^{-1},\ \forall x\in G\}$ \\
+Let $a, x, y\in G$ \\
+If $\phi_a(x)=\phi_a(y)\quad\Rightarrow axa^{-1}=aya^{-1}\quad\Rightarrow\quad x=y\quad\Rightarrow\quad\phi_a$ is $1-1$ \\
+Since $\phi_a(a^{-1}xa)=aa^{-1}xaa^{-1}=x\quad\Rightarrow\quad\phi_a$ is onto \\
+Since $\phi_a(xy)=axya^{-1}=axa^{-1}aya^{-1}=\phi_a(x)\phi_a(y)\quad\Rightarrow\quad\phi_a$ is an automorphism \\
+Let $\phi_x, \phi_y\in$ Inn$(G)\quad\Rightarrow\quad\phi_x^{-1}\in$ Aut$(G)$ \\
+Since $\phi_x\phi_x^{-1}(z)=\phi_x^{-1}\phi_x(z)=\varepsilon(z)=z,\ \forall z\in G\quad\Rightarrow\quad x\phi_x^{-1}(z)x^{-1}=z,\ \forall z\in G$ \\
+$\Rightarrow\quad\phi_x^{-1}(z)=x^{-1}zx,\ \forall z\in G\quad\Rightarrow\quad\phi_x^{-1}=\phi_{x^{-1}}\in$ Inn$(G)$ \\
+W.L.O.G., $\phi_x\phi_y(b)=\phi_x(yby^{-1})=xyby^{-1}x^{-1}=\phi_{xy}\in$ Inn$(G),\ \forall b\in G$ \\
+Hence Inn$(G)$ is a group
+\end{minipage} \\
+
+44. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Suppose that $G$ is a finite Abelian group and $G$ has no element of order 2.
+\end{minipage} \\
+
+44.a. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Show that the mapping $g\rightarrow g^2$ is an automorphism of $G$. \\
+Let $\phi(g)=g^2,\ g, a, b\in G$ \\
+If $\phi(a)=\phi(b)\quad\Rightarrow\quad a^2=b^2$ and $aab^{-1}b^{-1}=(ab^{-1})^2=e$ \\
+Since $|ab^{-1}|\ne2\quad\Rightarrow\quad|ab^{-1}|=1$ and $ab^{-1}=aa^{-1}=e\quad\Rightarrow\quad a=b\quad\Rightarrow\quad\phi$ is 1-1 \\
+If $g=e\quad\Rightarrow\quad|g|=1$ and $\phi(e)=e^2=g=e$ \\
+If $g\ne e$ and $|g|$ is even $\quad\Rightarrow\quad\exists\ n\in\mathbb{N}$ s.t. $|g|=2n$ and $g^{2n}=g^{n^2}=e\quad\Rightarrow\quad|g^n|=2\rightarrow\leftarrow$ \\
+If $g\ne e$ and $|g|$ is odd $\quad\Rightarrow\quad\frac{|g|+1}{2}\in\mathbb{N}\quad\Rightarrow\quad\phi(g^{(|g|+1)/2})=g^{|g|+1}=g\quad\Rightarrow\quad\phi$ is onto \\
+Since $\phi(ab)=(ab)^2=a^2b^2=\phi(a)\phi(b)\quad\Rightarrow\quad\phi$ is an automorphism of $G$
+\end{minipage} \\
+
+44.b. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Show, by example, that there is an infinite Abelian group for which the mapping $g\rightarrow g^2$ is one-to-one and operation-preserving but not an automorphism. \\
+$\mathbb{Z}$ is an infinite Abelian group under $+$, and $\phi(a)=a+a,\ \forall a\in\mathbb{Z}$ \\
+Let $a, b\in\mathbb{Z}$
+Assume that $\phi(a)=2a=\phi(b)=2b\quad\Rightarrow\quad a=b\quad\Rightarrow\quad\quad\Rightarrow\quad\phi$ is 1-1 \\
+If $\phi(a)=1\in\mathbb{Z}\quad\Rightarrow\quad a=\frac{1}{2}\notin\mathbb{Z}\quad\Rightarrow\quad\phi$ is not onto $\quad\Rightarrow\quad\phi$ is not an automorphism
+\end{minipage} \\
+
+45. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Let $G$ be a group and let $g\in G$. If $z\in Z(G)$, show that the inner automorphism induced by $g$ is the same as the inner automorphism induced by $zg$ (that is, that the mappings $\phi_{g}$ and $\phi_{zg}$ are equal). \\
+Let $g\in G$ and $z\in Z(G)\quad\Rightarrow\quad z^{-1}\in Z(G)$ \\
+$\Rightarrow\quad \phi_g(x)=gxg^{-1}=gxg^{-1}zz^{-1}=zgxz^{-1}g^{-1}=\phi_{zg}(x),\ \forall x\in G$
+\end{minipage} \\
+
+$\circ$ \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Write the permutation corresponding to each element in the left regular representation of $D_4$ in cycle form. \\
+\begin{tabular}{lll}
+    $T_{R_0}$ & $=$ & $\varepsilon$ \\
+    $T_{R_{90}}$ & $=$ & $(R_0\ R_{90}\ R_{180}\ R_{270})(H\ D'\ V\ D)$ \\
+    $T_{R_{180}}$ & $=$ & $(R_0\ R_{180})(R_{90}\ R_{270})(H\ V)(D\ D')$ \\
+    $T_{R_{270}}$ & $=$ & $(R_0\ R_{270}\ R_{180}\ R_{90})(H\ D\ V\ D')$ \\
+    $T_{H}$ & $=$ & $(R_0\ H)(R_{90}\ D)(R_{180}\ V)(R_{270}\ D')$ \\
+    $T_{V}$ & $=$ & $(R_0\ V)(R_{90}\ D')(R_{180}\ H)(R_{270}\ D)$ \\
+    $T_{D}$ & $=$ & $(R_0\ D)(R_{90}\ V)(R_{180}\ D')(R_{270}\ H)$ \\
+    $T_{D'}$ & $=$ & $(R_0\ D')(R_{90}\ H)(R_{180}\ D)(R_{270}\ V)$ \\
+\end{tabular}
+\end{minipage}
+
+\end{CJK}
+\end{document}

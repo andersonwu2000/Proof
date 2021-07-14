@@ -1,0 +1,415 @@
+\documentclass[12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\setlength{\parindent}{0em}
+\linespread{1.3}
+\author{andersonwu2000}
+\usepackage[margin=1cm]{geometry}
+\pagestyle{empty}
+\thispagestyle{empty} 
+
+\newcounter{sect}
+
+\newcounter{block}[sect]
+\newenvironment{tblock}[1]
+{\refstepcounter{block}\theblock.~\begin{minipage}[t]{\dimexpr\linewidth}#1\\}
+{\end{minipage}\\}
+
+\newenvironment{comm}
+{\makebox[12pt][l]{$\bullet$}\begin{minipage}[t]{\dimexpr\linewidth}}
+{\end{minipage}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
+
+\hfill 章節 8-4 吳至堯 U10811023
+
+% 92 94 97 98 99 106
+
+92. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Let $T:R^2\rightarrow R^3$ be defined by $T\left ( \begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix} \right ) =\begin{bmatrix}
+-x_2 \\
+0 \\
+2x_1+x_2
+\end{bmatrix}$
+\end{minipage}\\
+
+92.a. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find the matrix $\begin{bmatrix}
+T
+\end{bmatrix}_{B',B}$ relative to the bases $B=\{\textbf{u}_1,\ \textbf{u}_2\}$ and $B'=\{\textbf{v}_1,\ \textbf{v}_2,\ \textbf{v}_3\}$, where \\
+$\textbf{u}_1=\begin{bmatrix}
+1\\2
+\end{bmatrix},\ \textbf{u}_2=\begin{bmatrix}
+2\\-1
+\end{bmatrix},\ \textbf{v}_1=\begin{bmatrix}
+1\\1\\1
+\end{bmatrix},\ \textbf{v}_2=\begin{bmatrix}
+2\\2\\0
+\end{bmatrix},\ \textbf{v}_3=\begin{bmatrix}
+3\\0\\0
+\end{bmatrix}\quad\Rightarrow\quad T(\textbf{u}_1)=\begin{bmatrix}
+-2\\0\\4
+\end{bmatrix},\ T(\textbf{u}_2)=\begin{bmatrix}
+1\\0\\3
+\end{bmatrix}$ \\
+$\displaystyle\Rightarrow T(\textbf{u}_1)=4\textbf{v}_1-2\textbf{v}_2-\frac{2}{3}\textbf{v}_3,\ T(\textbf{u}_2)=3\textbf{v}_1-\frac{3}{2}\textbf{v}_2+\frac{1}{3}\textbf{v}_3\quad\Rightarrow\quad\begin{bmatrix}
+T
+\end{bmatrix}_{B',B}=\begin{bmatrix}
+4 & 3 \\ -2 & -\frac{3}{2} \\ -\frac{2}{3} & \frac{1}{3}
+\end{bmatrix}$
+\end{minipage}\\
+
+92.b. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Verify that Formula (8) of Section 8.4 holds for every vector in $R^2$. \\
+Let $\displaystyle\textbf{x}=\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}=\frac{x_1+2x_2}{5}\begin{bmatrix}
+1\\2
+\end{bmatrix}+\frac{2x_1-x_2}{5}\begin{bmatrix}
+2\\-1
+\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+x
+\end{bmatrix}_B=\begin{bmatrix}
+\frac{x_1+2x_2}{5}\\\frac{2x_1-x_2}{5}
+\end{bmatrix}$ \\
+$\displaystyle T(\textbf{x})=(2x_1+x_2)\begin{bmatrix}
+1\\1\\1
+\end{bmatrix}-\frac{2x_1+x_2}{2}\begin{bmatrix}
+2\\2\\0
+\end{bmatrix}-\frac{x_2}{3}\begin{bmatrix}
+3\\0\\0
+\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+T(\textbf{x})
+\end{bmatrix}_{B'}=\begin{bmatrix}
+2x_1+x_2\\-\frac{2x_1+x_2}{2}\\-\frac{x_2}{3}
+\end{bmatrix}$ \\
+$\Rightarrow\begin{bmatrix}
+T
+\end{bmatrix}_{B', B}\begin{bmatrix}
+\textbf{x}
+\end{bmatrix}_B=\begin{bmatrix}
+4 & 3 \\ -2 & -\frac{3}{2} \\ -\frac{2}{3} & \frac{1}{3}
+\end{bmatrix}\begin{bmatrix}
+\frac{x_1+2x_2}{5}\\\frac{2x_1-x_2}{5}
+\end{bmatrix}=\begin{bmatrix}
+2x_1+x_2\\-\frac{2x_1+x_2}{2}\\-\frac{x_2}{3}
+\end{bmatrix}=\begin{bmatrix}
+T(\textbf{x})
+\end{bmatrix}_{B'}$
+\end{minipage}\\
+
+94. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Let $T:P_2\rightarrow P_2$ be the linear operator defined by $T(p(x))=p(2x+1)$, that is, \\ $T(c_0+c_1x+c_2x^2)=c_0+c_1(2x+1)+c_2(2x+1)^2$
+\end{minipage}\\
+
+94.a. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find $\begin{bmatrix}
+T
+\end{bmatrix}_B$ with respect to the basis $B=\{1, x, x^2\}$ \\
+$\begin{bmatrix}
+T(1)
+\end{bmatrix}_B=\begin{bmatrix}
+1\\0\\0
+\end{bmatrix},\ \begin{bmatrix}
+T(x)
+\end{bmatrix}_B=\begin{bmatrix}
+1\\2\\0
+\end{bmatrix},\ \begin{bmatrix}
+T(x^2)
+\end{bmatrix}_B=\begin{bmatrix}
+1\\4\\4
+\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+T
+\end{bmatrix}_B=\begin{bmatrix}
+1&1&1\\0&2&4\\0&0&4
+\end{bmatrix}$
+\end{minipage}\\
+
+94.b. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Use the three-step procedure illustrated in Example 2 of Section 8.4 to compute $T(4+5x-x^2)$. \\
+Step 1. Let $\textbf{x}=4+5x-x^2\quad\Rightarrow\quad\begin{bmatrix}
+\textbf{x}
+\end{bmatrix}_B=\begin{bmatrix}
+4\\5\\-1
+\end{bmatrix}$ \\
+$\quad\Rightarrow\begin{bmatrix}
+T
+\end{bmatrix}_B\begin{bmatrix}
+\textbf{x}
+\end{bmatrix}_B=\begin{bmatrix}
+1&1&1\\0&2&4\\0&0&4
+\end{bmatrix}\begin{bmatrix}
+4\\5\\-1
+\end{bmatrix}=\begin{bmatrix}
+8\\6\\-4
+\end{bmatrix}=\begin{bmatrix}
+T(\textbf{x})
+\end{bmatrix}_B\quad\Rightarrow\quad T(4+5x-x^2)=8+6x-4x^2$
+\end{minipage}\\
+
+94.c. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Check the result obtained in part (b) by computing $T(4+5x-x^2)$ directly. \\
+$T(4+5x-x^2)=4+5(2x+1)-(2x+1)^2=4+10x+5-4x^2-4x-1=8+6x-4x^2$
+\end{minipage}\\
+
+97. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Let $A=\begin{bmatrix}
+3 & -2 & 1 & 0 \\
+1 & 6 & 2 & 1 \\
+-3 & 0 & 7 & 1
+\end{bmatrix}$ be the matrix for $T:R^4\rightarrow R^3$ relative to the bases $B=\{\textbf{v}_1, \textbf{v}
+_2, \textbf{v}_3, \textbf{v}_4\}$ and $B'=\{\textbf{w}_1, \textbf{w}
+_2, \textbf{w}_3\}$, where \\ $\textbf{v}_1=\begin{bmatrix}
+0\\1\\1\\1
+\end{bmatrix},\ \textbf{v}_2=\begin{bmatrix}
+2\\1\\-1\\-1
+\end{bmatrix},\ \textbf{v}_3=\begin{bmatrix}
+1\\4\\-1\\2
+\end{bmatrix},\ \textbf{v}_4=\begin{bmatrix}
+6\\9\\4\\2
+\end{bmatrix},\ \textbf{w}_1=\begin{bmatrix}
+0\\8\\8
+\end{bmatrix},\ \textbf{w}_2=\begin{bmatrix}
+-7\\8\\1
+\end{bmatrix},\ \textbf{w}_3=\begin{bmatrix}
+-6\\9\\1
+\end{bmatrix}$
+\end{minipage}\\
+
+97.a. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find $\begin{bmatrix}
+T(\textbf{v}_1 )
+\end{bmatrix}_{B'},\ \begin{bmatrix}
+T(\textbf{v}_2 )
+\end{bmatrix}_{B'},\ \begin{bmatrix}
+T(\textbf{v}_3 )
+\end{bmatrix}_{B'},\ \begin{bmatrix}
+T(\textbf{v}_4 )
+\end{bmatrix}_{B'}\quad\Rightarrow\quad\begin{bmatrix}
+T(\textbf{v}_1 )
+\end{bmatrix}_{B'}=A\begin{bmatrix}
+\textbf{v}_1
+\end{bmatrix}_B=\begin{bmatrix}
+3\\1\\-3
+\end{bmatrix},\\ \begin{bmatrix}
+T(\textbf{v}_2 )
+\end{bmatrix}_{B'}=A\begin{bmatrix}
+\textbf{v}_2
+\end{bmatrix}_B=\begin{bmatrix}
+-2\\6\\0
+\end{bmatrix},\ \begin{bmatrix}
+T(\textbf{v}_3 )
+\end{bmatrix}_{B'}=A\begin{bmatrix}
+\textbf{v}_3
+\end{bmatrix}_B=\begin{bmatrix}
+1\\2\\7
+\end{bmatrix},\ \begin{bmatrix}
+T(\textbf{v}_4 )
+\end{bmatrix}_{B'}=A\begin{bmatrix}
+\textbf{v}_4
+\end{bmatrix}_B=\begin{bmatrix}
+0\\1\\1
+\end{bmatrix}$
+\end{minipage}\\
+
+97.b. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find $T(\textbf{v}_1),\ T(\textbf{v}_2),\ T(\textbf{v}_3),\ T(\textbf{v}_4)\quad\Rightarrow\quad
+T(\textbf{v}_1)=3\textbf{w}_1+\textbf{w}_2-3\textbf{w}_3=\begin{bmatrix}
+11\\5\\22
+\end{bmatrix},\\ 
+T(\textbf{v}_2)=-2\textbf{w}_1+6\textbf{w}_2=\begin{bmatrix}
+-42\\32\\-10
+\end{bmatrix},\ 
+T(\textbf{v}_3)=\textbf{w}_1+2\textbf{w}_2+7\textbf{w}_3=\begin{bmatrix}
+-56\\87\\17
+\end{bmatrix},\ 
+T(\textbf{v}_4)=\textbf{w}_2+\textbf{w}_3=\begin{bmatrix}
+-13\\17\\2
+\end{bmatrix}$
+\end{minipage}\\
+
+97.c. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find a formula for $T(\textbf{x})=T\left(\begin{bmatrix}
+x_1\\x_2\\x_3\\x_4
+\end{bmatrix}\right)\quad\Rightarrow\quad$ Let $\textbf{x}=a_1\textbf{v}_1+a_2\textbf{v}_2+a_3\textbf{v}_3+a_4\textbf{v}_4\quad\Rightarrow\quad\begin{bmatrix}
+\textbf{x}
+\end{bmatrix}_B=\begin{bmatrix}
+a_1\\a_2\\a_3\\a_4
+\end{bmatrix}$ \\
+$\Rightarrow\textbf{x}=\begin{bmatrix}
+0&2&1&6\\
+1&1&4&9\\
+1&-1&-1&4\\
+1&-1&2&2
+\end{bmatrix}\begin{bmatrix}
+a_1\\a_2\\a_3\\a_4
+\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+\textbf{x}
+\end{bmatrix}_B=\begin{bmatrix}
+\frac{9x_1-8x_2-x_3+11x_4}{2} \\
+\frac{5x_1-4x_2-x_3+5x_4}{2} \\
+\frac{-2x_1+2x_2-x_3-x_4}{2} \\
+\frac{-3x_1+3x_2+x_3-4x_4}{2} \\
+\end{bmatrix}$ \\
+$\Rightarrow\quad T\left(\begin{bmatrix}
+x_1\\x_2\\x_3\\x_4
+\end{bmatrix}\right)=a_1T(\textbf{v}_1)+a_2T(\textbf{v}_2)+a_3T(\textbf{v}_3)+a_4T(\textbf{v}_4)=\begin{bmatrix}
+-\frac{253}{10} & \frac{98}{10} & \frac{241}{10} & -\frac{229}{10} \\
+\frac{115}{2} & -39 & -\frac{65}{2} & \frac{153}{2} \\
+66 & -60 & -9 & 91
+\end{bmatrix}\textbf{x}$
+\end{minipage}\\
+
+97.d. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Use the formula obtained in (c) to compute $T\left(\begin{bmatrix}
+2\\2\\0\\0
+\end{bmatrix}\right)$ \\
+$\Rightarrow T\left(\begin{bmatrix}
+2\\2\\0\\0
+\end{bmatrix}\right)=\begin{bmatrix}
+-\frac{253}{10} & \frac{98}{10} & \frac{241}{10} & -\frac{229}{10} \\
+\frac{115}{2} & -39 & -\frac{65}{2} & \frac{153}{2} \\
+66 & -60 & -9 & 91
+\end{bmatrix}\begin{bmatrix}
+2\\2\\0\\0
+\end{bmatrix}=\begin{bmatrix}
+-\frac{253}{5}+\frac{98}{5} \\
+115-78 \\
+132-120
+\end{bmatrix}=\begin{bmatrix}
+-31\\37\\13
+\end{bmatrix}$
+\end{minipage}\\
+
+98. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Let $A=\begin{bmatrix}
+2 & 0 & -1 \\
+1 & 3 & 5 \\
+0 & -2 & 6
+\end{bmatrix}$ be the matrix for $T:P_2\rightarrow P_2$ respect to the basis $B=\{\textbf{v}_1, \textbf{v}
+_2, \textbf{v}_3\}$, where \\ $\textbf{v}_1=2-2x^2,\ \textbf{v}_2=1+2x+2x^2,\ \textbf{v}_3=3x+x^2$
+\end{minipage}\\
+
+98.a. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find $\begin{bmatrix}
+T(\textbf{v}_1 )
+\end{bmatrix}_B,\ \begin{bmatrix}
+T(\textbf{v}_2 )
+\end{bmatrix}_B,\ \begin{bmatrix}
+T(\textbf{v}_3 )
+\end{bmatrix}_B\quad\Rightarrow\quad\begin{bmatrix}
+T(\textbf{v}_1 )
+\end{bmatrix}_B=\begin{bmatrix}
+2\\1\\0
+\end{bmatrix},\ \begin{bmatrix}
+T(\textbf{v}_2 )
+\end{bmatrix}_B=\begin{bmatrix}
+0\\3\\-2
+\end{bmatrix},\ \begin{bmatrix}
+T(\textbf{v}_3 )
+\end{bmatrix}_B=\begin{bmatrix}
+-1\\5\\6
+\end{bmatrix}$
+\end{minipage}\\
+
+98.b. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find $T(\textbf{v}_1),\ T(\textbf{v}_2),\ T(\textbf{v}_3)\quad\Rightarrow\quad T(\textbf{v}_1)=2\textbf{v}_1+\textbf{v}_2=5+2x-2x^2,\ T(\textbf{v}_2)=3\textbf{v}_2-2\textbf{v}_3=3+4x^2,\\ T(\textbf{v}_3)=-\textbf{v}_1+5\textbf{v}_2+6\textbf{v}_3=3+28x+18x^2$
+\end{minipage}\\
+
+98.c. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Find a formula for $T(a_0+a_1x+a_2x^2)\quad\Rightarrow\quad$ Let $\textbf{x}=a_0+a_1x+a_2x^2$ \\
+$\Rightarrow\begin{bmatrix}
+\textbf{x}
+\end{bmatrix}_B=\begin{bmatrix}
+\frac{4a_0+a_1-3a_2}{14} \\
+\frac{3a_0-a_1+3a_2}{7} \\
+\frac{-2a_0+3a_1-2a_2}{7}
+\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+T(\textbf{x})
+\end{bmatrix}_B=A\begin{bmatrix}
+\textbf{x}
+\end{bmatrix}_B=\begin{bmatrix}
+\frac{6a_0-2a_1-a_2}{7} \\
+\frac{2a_0+25a_1-5a_2}{14} \\
+\frac{20a_0-18a_1-18a_2}{7}
+\end{bmatrix}\quad\Rightarrow\quad T(\textbf{x})=\frac{6a_0-2a_1-a_2}{7}\textbf{v}_1+\frac{2a_0+25a_1-5a_2}{14}\textbf{v}_2+\frac{20a_0-18a_1-18a_2}{7}\textbf{v}_3=\frac{26a_0+17a_1-9a_2}{14}+\frac{-52a_0+85a_1-59a_2}{7}x+(-4a_0+7a_1-3a_2)x^2$
+\end{minipage}\\
+
+97.d. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Use the formula obtained in (c) to compute $T(1+x^2)$ \\
+$T(1+x^2)=\frac{26-9}{14}+\frac{-52-59}{7}x+(-4-3)x^2=\frac{17}{14}-\frac{111}{7}x-7x^2$
+\end{minipage}\\
+
+99. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Let $B=\{\textbf{u}_1, \textbf{u}_2, \textbf{u}_3\}$ be a basis for a vector space $V$, and let $T:V\rightarrow V$ be a linear operator for which $\begin{bmatrix}
+T
+\end{bmatrix}_B=\begin{bmatrix}
+-3&4&7\\
+1&0&-2\\
+0&1&0
+\end{bmatrix}$. Find  $\begin{bmatrix}
+T
+\end{bmatrix}_{B'}$, where $B'=\{\textbf{v}_1, \textbf{v}_2, \textbf{v}_3\}$ is the basis for $V$ defined by \\
+$\textbf{v}_1=\textbf{u}_1, \textbf{v}_2=\textbf{u}_1+\textbf{u}_2, \textbf{v}_3=\textbf{u}_1+\textbf{u}_2+\textbf{u}_3$
+\end{minipage}\\
+
+106. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+In each part, suppose that $B=\{\textbf{f}_1, \textbf{f}_2, \textbf{f}_3\}$ is a basis for a subspace $V$ of the vector space of real-valued functions defined on the real line. Find the matrix with respect to $B$ for differentiation operator $D:V\rightarrow V$.
+\end{minipage}\\
+
+106.a. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+$\textbf{f}_1=1, \textbf{f}_2=\sin x, \textbf{f}_3=\cos x\quad\Rightarrow\quad D(\textbf{f}_1)=0,\ D(\textbf{f}_2)=\cos x,\ D(\textbf{f}_3)=-\sin x$ \\
+$\Rightarrow D(\textbf{f}_1)=0,\ D(\textbf{f}_2)=\textbf{f}_3,\ D(\textbf{f}_3)=-\textbf{f}_2\quad\Rightarrow\quad\begin{bmatrix}
+D
+\end{bmatrix}_B=\begin{bmatrix}
+0&0&0\\0&0&-1\\0&1&0
+\end{bmatrix}$
+\end{minipage}\\
+
+106.b. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+$\textbf{f}_1=1, \textbf{f}_2=e^x, \textbf{f}_3=e^{2x}\quad\Rightarrow\quad D(\textbf{f}_1)=0,\ D(\textbf{f}_2)=e^x,\ D(\textbf{f}_3)=2e^{2x}$ \\
+$\Rightarrow D(\textbf{f}_1)=0,\ D(\textbf{f}_2)=\textbf{f}_2,\ D(\textbf{f}_3)=2\textbf{f}_3\quad\Rightarrow\quad\begin{bmatrix}
+D
+\end{bmatrix}_B=\begin{bmatrix}
+0&0&0\\0&1&0\\0&0&2
+\end{bmatrix}$
+\end{minipage}\\
+
+106.c. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+$\textbf{f}_1=e^{2x}, \textbf{f}_2=xe^{2x}, \textbf{f}_3=x^2e^{2x}\quad\Rightarrow\quad D(\textbf{f}_1)=2e^{2x},\ D(\textbf{f}_2)=e^{2x}+2xe^{2x},\ D(\textbf{f}_3)=2xe^{2x}+2x^2e^{2x}$ \\
+$\Rightarrow D(\textbf{f}_1)=2\textbf{f}_1+\textbf{f}_2,\ D(\textbf{f}_2)=2\textbf{f}_2+2\textbf{f}_3,\ D(\textbf{f}_3)=2\textbf{f}_3\quad\Rightarrow\quad\begin{bmatrix}
+D
+\end{bmatrix}_B=\begin{bmatrix}
+2&1&0\\0&2&2\\0&0&2
+\end{bmatrix}$
+\end{minipage}\\
+
+106.d. \begin{minipage}[t]{\dimexpr\linewidth-2em}
+Use the matrix in part (c) to compare $D(3e^{2x}-4xe^{2x}+8x^2e^{2x})$ \\
+Let $\textbf{x}=3e^{2x}-4xe^{2x}+8x^2e^{2x}\quad\Rightarrow\quad\begin{bmatrix}
+\textbf{x}
+\end{bmatrix}_B=\begin{bmatrix}
+3\\-4\\8
+\end{bmatrix}$ \\
+$\Rightarrow\begin{bmatrix}
+D(\textbf{x})
+\end{bmatrix}_B=\begin{bmatrix}
+D
+\end{bmatrix}_B\begin{bmatrix}
+\textbf{x}
+\end{bmatrix}_B=\begin{bmatrix}
+2&1&0\\0&2&2\\0&0&2
+\end{bmatrix}\begin{bmatrix}
+3\\-4\\8
+\end{bmatrix}=\begin{bmatrix}
+2\\8\\16
+\end{bmatrix}\quad\Rightarrow\quad D(\textbf{x})=2e^{2x}+8xe^{2x}+16x^2e^{2x}$
+\end{minipage}\\
+
+\end{CJK}
+\end{document}
