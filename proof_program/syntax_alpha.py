@@ -4,31 +4,32 @@ import architecture
 class alpha(syntax):
     """
     EBNF 文法 (依優先級)
-    declarative = "let" proposition { "then" proposition } 
-                | "if" proposition "then" proposition { "then" proposition }
-                | proposition
-    proposition = quantifier [ "\n" ]
-    quantifier  = [ quan_operator obj [ "∈" obj ] ":" ] operation_2
+    (* 空白和換行用於分隔 token *)
+    declarative = quantifier "."
+    proposition = [ "suppose" ] quantifier
+    quantifier  = [ quan_operator obj ":" ] operation_2
     operation_2 = operation_l { bin_operator operation_l }
-    operation_l = { operator_l } operation_r
-    operation_r = primary { operator_r }
+    operation_l = { l_operator } operation_r
+    operation_r = primary { r_operator }
     primary     = obj | "(" quantifier ")"
     obj         = ? all visible characters ?
 
     quan_operator = "∀" | "∃"
     bin_operator  = "∧" | "V" | "⇒" | "⇔" | "∈" | "="
-    operator_l    = "¬"
-    operator_r    = ε
+    l_operator    = "¬"
+    r_operator    = ε
+    TODO 加入 'let', 'if', 'then', 'since', 'by' 等
+    TODO 函數、語法定義、集合定義、反證法的支持
     """
-    alphabet = {"let", "if", "then", "\n", ":", "(", ")"}
+    alphabet = {"suppose", ".", ":", "(", ")"}
     quan_operator = {"∀", "∃"}
     alphabet.update(quan_operator)
     bin_operator = {"∧", "V", "⇒", "⇔", "∈", "="}
     alphabet.update(bin_operator)
-    operator_l = {"¬"}
-    alphabet.update(operator_l)
-    operator_r = set()
-    alphabet.update(operator_r)
+    l_operator = {"¬"}
+    alphabet.update(l_operator)
+    r_operator = set()
+    alphabet.update(r_operator)
     
     def __init__(self, narrative) -> None:
         """
@@ -37,64 +38,118 @@ class alpha(syntax):
             narrative (str / Node): 使用本語法表達的一個敘述
         Variables
             self.structure (list of Node): 與該敘述語法結構依序對應的抽象語法樹
+            self.obj_dict (dict of Node.kind:Node): 含有所有物件的字典
         """
         if type(narrative) is str:
+            self.obj_dict  = {}
             self.narrative = self.tokennize(narrative)
             self.structure = self.parser()
         elif type(narrative) is Node:
             self.structure = [narrative]
+            self.obj_dict  = self.get_obj()
         else:
             raise TypeError
 
     # Logic check
-    def logical(self, area) -> bool:
+    def logical(self, environment) -> bool:
         """ 驗證該敘述於對應環境是否正確 """
-        self.area = architecture.area(area, grammar=alpha)
+        self.environment = architecture.environment(environment, grammar=alpha)
         for node in self.structure:
-            if self.declarative_analysis(node) is False:
-                return False
+            result = self.proposition_analysis(node)
+            if result is not True:
+                return result
         return True
 
-    def declarative_analysis(self, node:Node) -> bool:
-        if node.kind == "let":
-            self.area.add(node.args[0])
-            for arg in node.args[1:]:
-                if self.declarative_analysis(arg) is False:
-                    return False
-        elif node.kind == "if":
-            self.area = architecture.area(self.area, node.args[0], alpha)
-            for arg in node.args[1:]:
-                if self.declarative_analysis(arg) is False:
-                    return False
-            self.area = self.area.bases.pop()
-            # add args[0] => args[n] to area for all n>0
-        elif node.kind == "then":
-            if self.quantifier_analysis(node.args[1]):
-                self.area.add(node.args[1])
-                return True
-            else:
-                return False
+    def proposition_analysis(self, node:Node) -> bool:
+        """ proposition 的驗證 """
+        if node.kind == "suppose":
+            self.environment.add_thm(node.args[0])
+            return True
         else:
-            if self.quantifier_analysis(node):
-                self.area.add(node)
-                return True
-            else:
-                return False
+            if result := self.node_analysis(node):
+                self.environment.add_thm(node)
+            return result
 
-    def quantifier_analysis(self, node:Node) -> bool:
-        # I guess the most difficult place starts here
-        pass
+    def node_analysis(self, node:Node) -> bool:
+        result = self.thm_analysis_method(node)
+        if result is not None:
+            return result
+        if node.kind == "∃":
+            replace, node.args[0].kind = node.args[0].kind, None
+            result = self.node_analysis(node.args[1])
+            node.args[0].kind = replace
+        args = [self.node_analysis(i) for i in node.args]
+        if None in args:
+            return
+        elif ValueError in args:
+            return ValueError
+        if node.kind == "¬":
+            result = not args[0]
+        elif node.kind == "∧":
+            result = args[0] and args[1]
+        elif node.kind == "V":
+            result = args[0] or args[1]
+        elif node.kind == "⇒":
+            result = not args[0] or args[1]
+        elif node.kind == "⇔":
+            result = args[0] == args[1]
+        return result
+
+    def thm_analysis_method(self, node:Node) -> bool:
+        """ 驗證環境中所有定理 """
+        result_list = []
+        for thm in self.environment.get_thm():
+            result = self.thm_analysis(thm.structure[0], node)
+            if result is True:
+                self.environment.add_thm(node)
+            result_list.append(result)
+        if ValueError in result_list:
+            return ValueError  # 矛盾
+        elif True in result_list and False in result_list:
+            return ValueError
+        elif True in result_list:
+            return True
+        elif False in result_list:
+            return False
+        else:
+            return None  # 不足以證明或證偽
+
+    def thm_analysis(self, thm:Node, node:Node) -> bool:
+        result = None
+        if thm.kind == node.kind or None in {thm.kind, node.kind}:
+            for t, n in zip(thm.args, node.args):
+                if self.thm_analysis(t, n) is not True:
+                    break
+            else:
+                return True
+        if thm.kind == "∀":
+            replace, thm.args[0].kind = thm.args[0].kind, None
+            result = self.thm_analysis(thm.args[1], node)
+            thm.args[0].kind = replace
+            if result:
+                return result
+        if thm.kind == "¬":
+            result = self.thm_analysis(thm.args[0], node)
+            if result not in {None, ValueError}:
+                return not result
+            else:
+                return result
+        elif thm.kind == "∧":
+            args = [self.thm_analysis(i, node) for i in thm.args]
+            if True in args and False in args:
+                result = ValueError
+            else:
+                result = args[0] or args[1]
+        elif thm.kind == "⇒":
+            if self.thm_analysis_method(thm.args[0]):
+                return self.thm_analysis(thm.args[1], node)
+        return result
 
     # Tokennize
     def tokennize(self, narrative:str) -> list:
-        """ 
-        標記化
-        token 以空白分隔
-        """
-        narrative = narrative.replace("\n", " \n ").split(" ")
+        """ 標記化 """
+        narrative = narrative.replace("\n", " ").split(" ")
         narrative = [i for i in narrative if not i==""] + [None]
-        if narrative[0] == "\n":
-            narrative.pop(0)
         return narrative
 
     def check(self, check_set:set):
@@ -118,6 +173,7 @@ class alpha(syntax):
         """ 
         生成抽象語法樹
         下列函數用於實現遞歸下降解析器
+        TODO 應用關於 EBNF 的編譯器編譯程式替代
         """
         self.idx = 0
         structure = []
@@ -126,31 +182,22 @@ class alpha(syntax):
         return structure
 
     def declarative(self) -> Node:
-        if self.check({"let"}):
-            node = Node(self.narrative[self.idx-1], self.proposition())
-        elif self.check({"if"}):
-            node = Node(self.narrative[self.idx-1], self.proposition())
-            self.claim({"then"})
-            node.args.append(Node(self.narrative[self.idx-1], self.proposition()))
-        else:
-            return self.proposition()
-        while self.check({"then"}):
-            node.args.append(Node(self.narrative[self.idx-1], self.proposition()))
+        node = self.proposition()
+        self.claim({"."})
         return node
     
     def proposition(self) -> Node:
-        node = self.quantifier()
-        self.check({"\n"})
+        if self.check({"suppose"}):
+            node = Node(self.narrative[self.idx-1], self.quantifier())
+        else:
+            node = self.quantifier()
         return node
     
     def quantifier(self) -> Node:
         if self.check(alpha.quan_operator):
-            kind = self.narrative[self.idx-1]
             node = self.obj()
-            if self.check({"∈"}):
-                node = Node(self.narrative[self.idx-1], node, self.obj())
             self.claim({":"})
-            node = Node(kind, node, self.operation_2())
+            node = Node(self.narrative[self.idx-3], node, self.operation_2())
         else:
             node = self.operation_2()
         return node
@@ -162,7 +209,7 @@ class alpha(syntax):
         return node
     
     def operation_l(self) -> Node:
-        if self.check(alpha.operator_l):
+        if self.check(alpha.l_operator):
             node = Node(self.narrative[self.idx-1], self.operation_l())
         else:
             node = self.operation_r()
@@ -170,7 +217,7 @@ class alpha(syntax):
     
     def operation_r(self) -> Node:
         node = self.primary()
-        while self.check(alpha.operator_r):
+        while self.check(alpha.r_operator):
             node = Node(self.narrative[self.idx-1], node)
         return node
     
@@ -184,36 +231,51 @@ class alpha(syntax):
     
     def obj(self) -> Node:
         self.idx += 1
-        return Node(self.narrative[self.idx-1])
+        kind = self.narrative[self.idx-1]
+        if kind not in self.obj_dict:
+            self.obj_dict[kind] = Node(kind)
+        return self.obj_dict[kind]
 
     # Auxiliary tools
-    def representation_structure(self, structure=None, space=0):
+    def get_obj(self, structure:list=None) -> dict:
+        """ 取得所有 obj """
+        obj_dict = {}
+        if structure is None:
+            structure = self.structure
+        for i in structure:
+            obj_dict[i.kind] = i
+            obj_dict.update(self.get_obj(i.args))
+        return obj_dict
+
+    def representation(self, structure:list=None, space=0) -> None:
         """ 表示該敘述的語法結構 """
         if structure is None:
             structure = self.structure
         if space == 0:
             print("-"*25)
         for i in structure:
-            print("    "*space, i.kind)
-            self.representation_structure(i.args, space+1)
+            print("    "*space, end="")
+            print(i.kind)
+            self.representation(i.args, space+1)
 
 if __name__ == "__main__":
     # 範例
 
-    proof = "∀ a ∈ A : ( ∃ b : ( ( b ∈ A ) ⇒ ( a = b ) ) )"
+    proof = "∀ a : ( ∃ b : ( ( a ∈ A ) ⇒ ( a = b ) ) ) ."
     c = alpha(proof)
-    c.representation_structure()
+    c.representation()
 
-    proof = "¬ True ∧ ¬ ¬ ¬ True ∧ True"
+    proof = "¬ True ∧ ¬ ¬ ¬ True ∧ True ."
     c = alpha(proof)
-    c.representation_structure()
+    c.representation()
 
-    proof = """
-        let a ∈ A
-        if a = b
-        then a ∈ B
-        then b ∈ A
+    proof = """ 
+        a ∈ A .
+        ( a = b )
+        ⇒ ( a ∈ B )
+        ⇒ ( b ∈ A ) .
         """
     c = alpha(proof)
-    c.representation_structure()
-    c.representation_structure(c.structure[1].args)
+    c.representation()
+    c.representation(c.structure[1].args)
+    print(c.obj_dict)

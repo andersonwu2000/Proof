@@ -1,30 +1,31 @@
 import syntax_alpha
 import architecture
 
-proof1 = r'''
-    1 + 1 = 2
-    '''
-proof2 = r'''
-    let ε > 0 
-    if | x - 3 | < ε / 2
-    then 2 * | x - 3 | < ε
-    then | 2 * x - 6 | < ε
-    then 2 * x → 6 as x → 3
-    '''
-bases = architecture.the_basic
-assumptions = "a = b"
-grammar = syntax_alpha.alpha
-new_area = architecture.area(bases, assumptions, grammar)
-new_area = architecture.area(new_area, set(), grammar)
-assumptions = {
-    "¬ True ∧ ¬ ¬ ¬ True ∧ True",
-    "∀ a ∈ A : ( ∃ b : ( ( b ∈ A ) ⇒ ( a = b ) ) )" }
-new_area = architecture.area(new_area, assumptions, grammar)
+bases = architecture.the_basic  # 可省略
+assumptions = {"a ∧ b .", "a ."}  # 該環境的假設
+grammar = syntax_alpha.alpha  # 使用的語法
+new_area = architecture.environment(bases, assumptions, grammar)  # 環境
 
-# thms = new_area.theorems
-# for thm in thms:
-#     thm.representation_structure()
+proof1 = "b ∧ a ."
+proof2 = "¬ b ∧ a ."
 
-thms = new_area.theorems
-for thm in thms:
-    thm.representation_structure()
+new_area(proof1)  # True
+new_area(proof2)  # False
+
+
+assumptions = {"¬ ( ( c ∈ A ) ∧  ( d ∈ B ) ) ."}  # 新環境的假設
+new_area = architecture.environment(new_area, assumptions, grammar)  # 繼承舊環境
+
+proof1 = "b ∧ a ."
+proof2 = "suppose c ∈ A . d ∈ B ."
+
+new_area(proof1)  # 依然是 True
+new_area(proof2)  # Fasle
+
+
+assumptions = {"a ∧ b .", "¬ ( a ∧ b ) ."}  # 矛盾
+new_area = architecture.environment(bases, assumptions, grammar)
+
+proof1 = "b ∧ a ."
+
+new_area(proof1)  # 矛盾
