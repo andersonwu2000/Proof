@@ -1,3 +1,9 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{color,soul,CJK,epic,tikz,array}
+\usepackage{amsmath,amsthm,amssymb}
+\setlength{\parindent}{0em}
+
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{theorem}[definition]{Theorem}
@@ -12,6 +18,9 @@
 \newcommand\im{\mathrm{im}\hspace{2pt}}
 \newcommand\rel{\ \mathrm{rel}\ }
 \newcommand\diam{\mathrm{diam}\hspace{2pt}}
+
+\begin{document}
+\begin{CJK}{UTF8}{bsmi}
 
 \title{Topology}
 \author{AndersonWu2000}
@@ -1919,3 +1928,6 @@ $\sigma_1+\sigma_2$ 可視為 $\sigma_1$ 和 $\sigma_2$ 的疊加圖形，$-\sig
         \theta_n:H_n(X)\to\prod_{\lambda\in\Lambda}H_n(X_\lambda):\sigma+B_n(X)\mapsto(\sigma_\lambda+B_n(X_\lambda))_{\lambda\in\Lambda}.
     \]
 \end{proof}
+
+\end{CJK}
+\end{document}
