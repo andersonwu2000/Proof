@@ -1,13 +1,9 @@
-\documentclass[12pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage{color,soul,CJK,epic,tikz,array}
-\usepackage{amsmath,amsthm,amssymb}
-\setlength{\parindent}{0em}
-
-window.MathJax = {
-  loader: {load: ['[tex]/color', '[tex]/CJK', '[tex]/array', '[tex]/amsmath', '[tex]/amsthm', '[tex]/amssymb']},
-  tex: {packages: {'[+]': ['color', 'CJK', 'array', 'amsmath', 'amsthm', 'amssymb']}}
-};
+---
+title: "Using more LaTeX packages"
+output: 
+  pdf_document:
+    extra_dependencies: ["amsmath", "amsthm", "amssymb"]
+---
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
