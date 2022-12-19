@@ -1,3 +1,18 @@
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{example}[definition]{Example}
+
+\newcommand\<{\langle}
+\renewcommand\>{\rangle}
+\newcommand\obj{\mathrm{obj}\hspace{2pt}}
+\newcommand\im{\mathrm{im}\hspace{2pt}}
+\newcommand\rel{\ \mathrm{rel}\ }
+\newcommand\diam{\mathrm{diam}\hspace{2pt}}
+
 \title{Topology}
 \author{AndersonWu2000}
 \maketitle
