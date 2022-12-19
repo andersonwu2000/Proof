@@ -4,6 +4,11 @@
 \usepackage{amsmath,amsthm,amssymb}
 \setlength{\parindent}{0em}
 
+window.MathJax = {
+  loader: {load: ['[tex]/color', '[tex]/CJK', '[tex]/array', '[tex]/amsmath', '[tex]/amsthm', '[tex]/amssymb']},
+  tex: {packages: {'[+]': ['color', 'CJK', 'array', 'amsmath', 'amsthm', 'amssymb']}}
+};
+
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{theorem}[definition]{Theorem}
@@ -12,19 +17,16 @@
 \newtheorem{corollary}[definition]{Corollary}
 \newtheorem{example}[definition]{Example}
 
-\newcommand\<{\langle}
-\renewcommand\>{\rangle}
-\newcommand\obj{\mathrm{obj}\hspace{2pt}}
-\newcommand\im{\mathrm{im}\hspace{2pt}}
-\newcommand\rel{\ \mathrm{rel}\ }
-\newcommand\diam{\mathrm{diam}\hspace{2pt}}
+\(
+   \def\<{{\langle}}
+   \def\>{{\rangle}}
+   \def\obj{{\mathrm{obj}\hspace{2pt}}}
+   \def\obj{{\mathrm{obj}\hspace{2pt}}}
+   \def\im{{\mathrm{im}\hspace{2pt}}}
+   \def\rel{{\ \mathrm{rel}\ }}
+   \def\diam{{\mathrm{diam}\hspace{2pt}}}
+\)
 
-\begin{document}
-\begin{CJK}{UTF8}{bsmi}
-
-\title{Topology}
-\author{AndersonWu2000}
-\maketitle
 
 \section{Introduction}
 
@@ -1929,5 +1931,3 @@ $\sigma_1+\sigma_2$ 可視為 $\sigma_1$ 和 $\sigma_2$ 的疊加圖形，$-\sig
     \]
 \end{proof}
 
-\end{CJK}
-\end{document}
