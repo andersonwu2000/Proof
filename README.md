@@ -1,27 +1,65 @@
-# First Order Language - Proof Assistant
+## Usage
 
-1. 建立語言：
-   使用 first_order_logic.Language 建立語言。
-   ```
-   LNT = Language({"0":0, "S":1, "+":2, "*":2, "E":2},
-                  {"<":2})
-   ```
-   
-2. 語法：
-   以波蘭表示法編寫一階邏輯公式，符號間以空白區隔。
-   ```
-   "∀ x ∀ y = x y"
-   ```
-   
-   一階邏輯公式外部運算子：
-   
-   2.1. 命名 `name := formula`
-        為公式命名，以供引用。
-   
-   2.2. 引用 `formula by name1 name2 ...`
-        適用於命題邏輯推理，以加速證明。
-   ```
-   "S1 := → = 0 0 = x y by N1 N2"
-   ```
-    
-4. 證明：
+To effectively utilize this library, follow these steps:
+
+**Step 1:** Build a language using the `Language` class, specifying function symbols, relation symbols, and whether to use '=' as the equality symbol.
+
+```python
+from first_order_logic import *
+
+# Example of creating a language
+LNT = Language(
+    {"0": 0, "S": 1, "+": 2, "*": 2, "E": 2},
+    {"<": 2}
+)
+```
+
+**Step 2:** Define axioms by building a list of FORMULAs and using the `Axiom` class, specifying the language for which the axioms are defined.
+
+```python
+# Example of creating axioms
+N = Axiom(LNT, [
+    "N1  := ∀ x ¬ = S x 0",
+    "N2  := ∀ x ∀ y → = S x S y = x y",
+    "N3  := ∀ x = + x 0 x",
+])
+```
+
+**Step 3:** Build a deduction by creating a list of FORMULAs.
+
+```python
+# Example of creating a deduction
+deduction = [
+    "∀ x ¬ = S x 0",
+    "→ ∀ x ¬ = S x 0 ¬ = S 0 0",
+    "¬ = S 0 0"
+]
+```
+
+**Step 4:** Use the defined axioms to deduce the deduction using the `Axiom.Deduce` method.
+
+```python
+# Example of deducing with axioms
+result = N.Deduce(deduction, update_axiom=True)
+
+# Check the result
+print(result)  # True
+```
+
+By following these steps, you can effectively use this library to work with first-order logic and perform deductions using axioms.
+
+## Signature of Language
+The signature of a language consists of two dictionaries: **functions** and **relations**. 
+The keys of these two dictionaries are symbols, and the values are the arity of the symbols.
+
+## Grammar of FORMULAs
+1. **WFF** (Well-Formed Formula):
+    A well-formed formula in the 1st order language.
+    Expressed in Polish notation.
+2. **NAME**:
+    A string used to name the FORMULA.
+3. **FORMULA**:
+    A string that follows the following rules
+    * If `φ` is a WFF, then `φ` is a FORMULA.
+    * If `φ` is a WFF, `n` is a NAME, then `n := φ` is a FORMULA.
+    * If `φ` is a WFF, `a, b, c, ...` are NAMEs or WFFs, then `φ by a b c ...` is a FORMULA.
