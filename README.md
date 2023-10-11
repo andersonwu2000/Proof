@@ -50,16 +50,24 @@ By following these steps, you can effectively use this library to work with firs
 
 ## Signature of Language
 The signature of a language consists of two dictionaries: **functions** and **relations**. 
+
 The keys of these two dictionaries are symbols, and the values are the arity of the symbols.
 
 ## Grammar of FORMULAs
-1. **WFF** (Well-Formed Formula):
-    A well-formed formula in the 1st order language.
-    Expressed in Polish notation.
-2. **NAME**:
-    A string used to name the FORMULA.
-3. **FORMULA**:
-    A string that follows the following rules
-    * If `φ` is a WFF, then `φ` is a FORMULA.
-    * If `φ` is a WFF, `n` is a NAME, then `n := φ` is a FORMULA.
-    * If `φ` is a WFF, `a, b, c, ...` are NAMEs or WFFs, then `φ by a b c ...` is a FORMULA.
+
+1. **Variable**:
+   - A string that adheres to the following rules:
+     * Variables can be single letters such as `x`, `y`, and `z`.
+     * Variables can also be represented as `v` followed by a string of numerals, for example, `v123`.
+
+2. **WFF** (Well-Formed Formula):
+   - A well-formed formula in the 1st order language expressed in Polish notation.
+
+3. **NAME**:
+   - A string used to assign a name to a FORMULA.
+
+4. **FORMULA**:
+   - A string that conforms to the following rules:
+     * If `φ` is a WFF, then `φ` is a FORMULA.
+     * If `φ` is a WFF and `n` is a NAME, then `n := φ` is a FORMULA.
+     * If `φ` is a WFF and `a, b, c, ...` are either NAMEs or WFFs, then `φ by a b c ...` is a FORMULA.
